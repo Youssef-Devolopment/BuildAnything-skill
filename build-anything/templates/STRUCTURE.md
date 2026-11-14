@@ -13,6 +13,7 @@
 ├── README.md          # How to install, run, test, deploy
 ├── ARCHITECTURE.md    # System shape and design decisions
 ├── CHANGELOG.md       # Timeline: what changed, stage by stage
+├── CHECKLIST.md       # Pre-flight check: env, deps, secrets — run before each stage
 ├── src/               # {{one line: what lives here}}
 │   ├── {{module}}/    # {{what it does, entry point file}}
 │   └── …
@@ -30,6 +31,7 @@
 | Change {{the UI / endpoint}} | `{{path}}` |
 | Change {{data shape}} | `{{path}}` + migration `{{path}}` |
 | Add a {{new screen / route}} | `{{pattern to follow}}` |
+| Ship / verify a stage | `CHECKLIST.md` (pre-flight) → gate review |
 | Run it / test it | README → Quick start |
 
 ## Entry points

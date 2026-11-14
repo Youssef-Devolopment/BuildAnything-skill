@@ -53,7 +53,7 @@ C:\Buildanything skill\
 ├── build-anything/
 │   ├── SKILL.md
 │   ├── references/stacks.md
-│   └── templates/          # TEMPLATE.md + PLAN/STATUS/README/ARCHITECTURE/STRUCTURE/CHANGELOG skeletons, .env.example, .gitignore, CI workflow
+│   └── templates/          # TEMPLATE.md + PLAN/STATUS/README/ARCHITECTURE/STRUCTURE/CHANGELOG/CHECKLIST skeletons, .env.example, .gitignore, CI workflow
 ├── idea-refiner/SKILL.md
 ├── micro-planner/SKILL.md
 ├── idea-to-product/SKILL.md

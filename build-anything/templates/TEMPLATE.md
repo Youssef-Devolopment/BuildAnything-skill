@@ -19,6 +19,7 @@ Copy-from templates for day-one project scaffolding. Use these instead of invent
 | `ARCHITECTURE.md` | Day one if the stack/architecture is decided; filled as components appear | `/ARCHITECTURE.md` |
 | `STRUCTURE.md` | Day one (tree with placeholders), real content by first review | `/STRUCTURE.md` |
 | `CHANGELOG.md` | Day one; appended at every stage gate | `/CHANGELOG.md` |
+| `CHECKLIST.md` | Day one; run before every stage's code output and every deploy | `/CHECKLIST.md` |
 | `env.example` | Whenever the project reads environment variables | `/.env.example` |
 | `gitignore` | Day one — pick the closest profile and trim it | `/.gitignore` |
 | `ci.yml` | Day one, GitHub-native rule: lint + tests on every push | `/.github/workflows/ci.yml` |

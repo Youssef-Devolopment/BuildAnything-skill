@@ -5,6 +5,13 @@
 
 **Last updated:** {{date}} · **Current stage:** {{N — name}} · **Build:** {{green ✅ / failing ❌}}
 
+## Stage ledger
+
+<!-- One line per stage. Append/maintain at EVERY gate — this is the anti-context-drift tracker. -->
+- [x] Stage 1: {{Architecture & scaffolding}} (Completed on YYYY-MM-DD)
+- [ ] Stage 2: {{Core implementation}} — In Progress
+- [ ] Stage 3: {{…}} — Not started
+
 ## What's done
 
 <!-- Only verified, working behavior. Never list unimplemented features. -->

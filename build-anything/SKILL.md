@@ -75,7 +75,7 @@ When understanding is complete, **write `PLAN.md` at the project root before any
 
 ## Stage gates: finish one stage before starting the next
 
-> **Stage-gate checklist** (every stage, in order): clean least code → tests pass → *if an error appears: run the 5-step recovery loop below* → append `CHANGELOG.md` entry → user review.
+> **Stage-gate checklist** (every stage, in order): clean least code → tests pass → *if any command fails: run the 5-step recovery loop below* → **pre-flight sanity check** (below) → append `CHANGELOG.md` entry + flip the `STATUS.md` stage ledger → user review.
 
 The implementation section of `PLAN.md` is ordered stages. Each stage must be **fully closed** before the next one begins:
 
@@ -86,17 +86,30 @@ The implementation section of `PLAN.md` is ordered stages. Each stage must be **
 
 Repeat for every stage. A stage is not "done" because the code was written — it is done when it is clean, tested, error-free (or errors reported), and reviewed.
 
-**When a gate clears: append to `CHANGELOG.md`** (see the versioning protocol below) in the same change.
+**When a gate clears — three file updates in the same change:**
+1. `CHANGELOG.md` — append the stage entry (see the versioning protocol below).
+2. `STATUS.md` — flip the stage ledger line: `- [x] Stage N: {{outcome}} (Completed on YYYY-MM-DD)` and mark the next one `- [ ] … — In Progress`. This ledger is the anti-context-drift tracker: a fresh session reads it and knows *precisely* where work stopped.
+3. Any doc the stage's behavior changed (same-change doc rule).
+
+## Pre-flight sanity check (mandatory)
+
+Before outputting a stage's code — and again before any deploy/release — run `templates/CHECKLIST.md` and answer every line with evidence:
+
+1. **Env vars** — everything the code reads exists in `.env.example`?
+2. **Dependencies** — everything imported is declared in the package file, lockfile-consistent?
+3. **No secrets or placeholders** — zero hardcoded keys, no TODO/lorem/fake data pretending to work?
+
+Before the *gate* closes additionally: tests green from the README command, fresh-clone path works, docs touched, secrets scan clean. One explicit `no` = don't ship; fix first (cheap now, expensive later). Never answer "should be fine" — the answer needs the command run or the file:line checked.
 
 ## Failure recovery: the 5-step correction loop
 
-When a test fails, a build breaks, or an error appears — **do not improvise fixes.** Random patches from repeated attempts are how small models create AI slop. Run this loop instead, every single time:
+**Trigger: immediately**, whenever a test fails, a build errors, **or any command execution fails** — no exceptions, no "try something and see". This protocol prevents trial-and-error and random code modifications:
 
-1. **Capture** — save the *exact* error: full message, stack/line, and the command that produced it. No paraphrasing.
-2. **Read** — open the source file(s) the error points at (and their callers). Read the actual code; don't reason from memory of what it probably says.
-3. **Hypothesize** — state **one** root cause as a testable sentence: "X fails because Y." If you can't name one specific cause, you don't understand the error yet — go back to step 2 (read deeper: the error is often in a file away from the crash site — follow the data, not the stack trace).
-4. **Fix minimally** — apply the smallest change that makes the hypothesis true. No drive-by refactors, no "while I'm here" cleanup, no rewriting the file. One fix per iteration.
-5. **Verify** — re-run the exact failing command (then the full suite). Green → done; red → back to step 1 with the *new* error.
+1. **Capture** — save the *exact* error: full message, stack/line, and the command that produced it. Copy it unmodified — no paraphrasing, no truncating the stack.
+2. **Read** — open the source file(s) the error points at (and their callers). Read the actual code; don't reason from memory of what it probably says. Pinpoint the exact line of failure.
+3. **Hypothesize** — state **one** root cause as a single, clear, direct, testable sentence: "X fails because Y at line Z." If you can't name one specific cause, you don't understand the error yet — go back to step 2 (read deeper: the error is often in a file away from the crash site — follow the data, not the stack trace).
+4. **Fix minimally** — apply the bare minimum change that makes the hypothesis true. No rewriting entire files, no drive-by refactors, no "while I'm here" cleanup, no invalid/placeholder code (AI slop). One fix per iteration.
+5. **Verify** — re-run the **exact failing command** (then the full suite/build) to confirm the error is completely eliminated and the stage transitions successfully. Green → done; red → back to step 1 with the *new* error.
 
 Rules:
 - **One fix per loop iteration.** Changing three things at once makes it impossible to know which one worked.
@@ -269,6 +282,8 @@ Rules for docs:
 ## Definition of done
 
 - Every stage in `PLAN.md` passed its gate: clean least-code, tested, all errors fixed or reported to the user first, and reviewed by the user before the next stage.
+- The pre-flight sanity check passed with evidence (env vars, dependencies, no secrets/placeholders — plus tests/docs/secrets at gate close).
+- `STATUS.md` stage ledger is current: every cleared stage is `- [x]` with a date, next stage marked in progress.
 - `PLAN.md` exists, was written before any code, and matches what was actually built.
 - The feature works and you have verified it by running it.
 - Tests cover the new behavior and the suite passes.
