@@ -12,7 +12,7 @@ You built it — so you're biased. This skill is the **independent verdict**: as
 Work through this checklist and record a result for every line:
 
 1. **Build & tests** — fresh clone (or clean checkout) → install → build → test, exactly per README. All green? Coverage of `PLAN.md` features?
-2. **The plan** — trace `PLAN.md` §6 stage by stage: every acceptance criterion ticked? Every `IDEA.md` requirement mapped to working behavior? Any stage quietly skipped?
+2. **The plan** — trace `PLAN.md` §6 stage by stage: every acceptance criterion ticked? Every `IDEA.md` requirement mapped to working behavior? Any stage quietly skipped? **`TODO.md`: every task `- [x]` and every checkmark backed by a green test — a checked box without evidence is a blocker.**
 3. **Drive the product like a user** — every main flow end-to-end, plus: empty states, error states (kill the network/DB and see what happens), invalid input, double-clicks, refresh mid-flow, mobile viewport, keyboard-only navigation.
 4. **Security spot-check** — secrets out of code/logs, auth on every protected endpoint, input validated, dependencies pinned (per `build-anything` §5).
 5. **Code health** — no debug leftovers, no commented-out blocks, no swallowed errors, no TODO walls; the least-code principle held.

@@ -9,6 +9,7 @@
 ```text
 {{project}}/
 ├── PLAN.md            # What we're building and why (the contract)
+├── TODO.md            # Atomic task ledger — the granular "what's next" (source of truth while building)
 ├── STATUS.md          # What's done / in progress / next — read this first
 ├── README.md          # How to install, run, test, deploy
 ├── ARCHITECTURE.md    # System shape and design decisions

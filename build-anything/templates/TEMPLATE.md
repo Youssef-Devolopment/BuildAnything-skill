@@ -14,6 +14,7 @@ Copy-from templates for day-one project scaffolding. Use these instead of invent
 | Template | Create when | Target path |
 |---|---|---|
 | `PLAN.md` | After discovery (Phase B), **before any code** — always | `/PLAN.md` |
+| `TODO.md` | After plan approval (Phase D), **before any application code** — always | `/TODO.md` |
 | `STATUS.md` | Day one; update at every stage gate — always | `/STATUS.md` |
 | `README.md` | Day one (skeleton), completed before first release — always | `/README.md` |
 | `ARCHITECTURE.md` | Day one if the stack/architecture is decided; filled as components appear | `/ARCHITECTURE.md` |

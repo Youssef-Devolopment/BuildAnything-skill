@@ -73,9 +73,33 @@ When understanding is complete, **write `PLAN.md` at the project root before any
 - Treat `PLAN.md` as a living contract: when requirements change, update it in the same change that implements them.
 - Build exactly the plan. If you discover the plan is wrong, revise `PLAN.md` first, then the code.
 
+### Phase D — Generate the task ledger (`TODO.md` Protocol)
+
+**Before writing a single line of application code**, generate a granular `TODO.md` at the project root (template: `templates/TODO.md`) mapping every step of execution:
+
+1. **Pre-code breakdown** — split the approved `PLAN.md` §6 into **atomic, verifiable tasks grouped by stage gate**. Every task = a single file, module, or feature:
+   ```markdown
+   # Project TODO Ledger
+
+   ## Stage 1: Foundation & Setup
+   - [ ] Initialize project structure and configuration files
+   - [ ] Set up database schema and environment variables (`.env.example`)
+
+   ## Stage 2: Core Features
+   - [ ] Build authentication middleware and routes
+   - [ ] Create main dashboard UI components
+   ```
+   Atomicity rules: one verb per task (two verbs = split it), you can name the test/demo that proves it done, edge cases and multi-file dependencies are **their own tasks** — never hidden inside a vague one. Stage titles must match `PLAN.md` §6 exactly.
+
+2. **Real-time tracking** — after completing each task **and verifying it passes tests/linting**, immediately check it off (`- [x]`) *before* moving to the next item. A checked box without a green test is a lie the judge will catch.
+
+3. **Scope discipline** — building features **not listed in `TODO.md` is forbidden**. New requirements discovered mid-build are added as tasks (or routed through `PLAN.md` if they change scope) *first*, so the roadmap remains the single source of truth. No side quests, no "while I'm here" additions.
+
+`TODO.md` is the *granular* twin of `PLAN.md` (plan = what/why per stage; TODO = every atomic step), and `STATUS.md` is the *summary* (ledger of stages for handoff). All three update at their respective gates.
+
 ## Stage gates: finish one stage before starting the next
 
-> **Stage-gate checklist** (every stage, in order): clean least code → tests pass → *if any command fails: run the 5-step recovery loop below* → **pre-flight sanity check** (below) → append `CHANGELOG.md` entry + flip the `STATUS.md` stage ledger → user review.
+> **Stage-gate checklist** (every stage, in order): clean least code → tests pass → *if any command fails: run the 5-step recovery loop below* → **pre-flight sanity check** (below) → check off this stage's `TODO.md` tasks + append `CHANGELOG.md` entry + flip the `STATUS.md` stage ledger → user review.
 
 The implementation section of `PLAN.md` is ordered stages. Each stage must be **fully closed** before the next one begins:
 
@@ -86,10 +110,11 @@ The implementation section of `PLAN.md` is ordered stages. Each stage must be **
 
 Repeat for every stage. A stage is not "done" because the code was written — it is done when it is clean, tested, error-free (or errors reported), and reviewed.
 
-**When a gate clears — three file updates in the same change:**
-1. `CHANGELOG.md` — append the stage entry (see the versioning protocol below).
-2. `STATUS.md` — flip the stage ledger line: `- [x] Stage N: {{outcome}} (Completed on YYYY-MM-DD)` and mark the next one `- [ ] … — In Progress`. This ledger is the anti-context-drift tracker: a fresh session reads it and knows *precisely* where work stopped.
-3. Any doc the stage's behavior changed (same-change doc rule).
+**When a gate clears — four file updates in the same change:**
+1. `TODO.md` — every task of this stage is `- [x]` (each one verified by its test/lint first).
+2. `CHANGELOG.md` — append the stage entry (see the versioning protocol below).
+3. `STATUS.md` — flip the stage ledger line: `- [x] Stage N: {{outcome}} (Completed on YYYY-MM-DD)` and mark the next one `- [ ] … — In Progress`. This ledger is the anti-context-drift tracker: a fresh session reads it and knows *precisely* where work stopped.
+4. Any doc the stage's behavior changed (same-change doc rule).
 
 ## Pre-flight sanity check (mandatory)
 
@@ -121,7 +146,7 @@ Rules:
 
 Everything needed to understand, run, and continue the project lives **as files in the repository**, committed from the first day — no knowledge that exists only in chat history:
 
-- All docs (`PLAN.md`, `README.md`, `STRUCTURE.md`, `ARCHITECTURE.md`, `STATUS.md`, `CHANGELOG.md`, `DECISIONS.md`) are committed files.
+- All docs (`PLAN.md`, `TODO.md`, `README.md`, `STRUCTURE.md`, `ARCHITECTURE.md`, `STATUS.md`, `CHANGELOG.md`, `DECISIONS.md`) are committed files.
 - Setup, scripts, and decisions are reproducible from a fresh `git clone`: install → run → test works with no private context.
 - `.gitignore` excludes secrets and build artifacts; `.env.example` documents required variables.
 - CI (if the platform supports it) runs lint + tests on push from day one.
@@ -158,9 +183,9 @@ One place for each kind of file; no loose files at the root beyond the documente
 Switching models, tools, or chat windows mid-project must be frictionless. Use this exact 3-line prompt to resume any BuildAnything project from zero context — give it to the user (or paste it into the new session yourself):
 
 ```text
-Read PLAN.md, STRUCTURE.md, and .opencode/skills/<project-id>/SKILL.md.
+Read PLAN.md, TODO.md, STRUCTURE.md, and .opencode/skills/<project-id>/SKILL.md.
 State our current status from STATUS.md and CHANGELOG.md.
-Tell me the next task from PLAN.md §6 and what you need from me to start it.
+Tell me the next unchecked task from TODO.md and what you need from me to start it.
 ```
 
 Rules: the prompt is only as good as the docs — if STATUS/CHANGELOG are stale, fixing them is part of handoff, not optional. For a *brand-new* project (no docs yet), the cold-start prompt is instead `idea-refiner`'s input: paste your raw idea.
@@ -285,6 +310,7 @@ Rules for docs:
 - The pre-flight sanity check passed with evidence (env vars, dependencies, no secrets/placeholders — plus tests/docs/secrets at gate close).
 - `STATUS.md` stage ledger is current: every cleared stage is `- [x]` with a date, next stage marked in progress.
 - `PLAN.md` exists, was written before any code, and matches what was actually built.
+- `TODO.md` exists (generated pre-code from the plan), every completed task is `- [x]` with its test green, and nothing was built that wasn't on it.
 - The feature works and you have verified it by running it.
 - Tests cover the new behavior and the suite passes.
 - The code is the least code that fully solves the problem, and every line is intentional.
