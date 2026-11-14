@@ -1,0 +1,23 @@
+# Normalize line endings: LF in the repo, working copy follows OS.
+* text=auto eol=lf
+
+# Explicitly text files
+*.md text
+*.ps1 text eol=crlf
+*.yml text
+*.yaml text
+*.json text
+
+# Binary files — never touched
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.zip binary

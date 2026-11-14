@@ -1,11 +1,11 @@
 ---
 name: Frontend
-description: Build production-quality frontend code — components, state, routing, data fetching, performance, accessibility, and testing. Load when implementing any client-side code in a web/app project. Follows senior-engineering's stage gates and the design-ui skill's decisions.
+description: Build production-quality frontend code — components, state, routing, data fetching, performance, accessibility, and testing. Load when implementing any client-side code in a web/app project. Follows build-anything's stage gates and the design-ui skill's decisions.
 ---
 
 # Frontend
 
-Load `senior-engineering` first (discovery, plan, stage gates). Load `design-ui` when there are design decisions to make. This skill covers implementing them.
+Load `build-anything` first (discovery, plan, stage gates). Load `design-ui` when there are design decisions to make. This skill covers implementing them.
 
 ## Principles
 

@@ -1,11 +1,11 @@
 ---
 name: Backend
-description: Build production-quality backend code — APIs, data models, business logic, auth, validation, security, and testing. Load when implementing any server-side code, database schema, or integration. Follows senior-engineering's stage gates.
+description: Build production-quality backend code — APIs, data models, business logic, auth, validation, security, and testing. Load when implementing any server-side code, database schema, or integration. Follows build-anything's stage gates.
 ---
 
 # Backend
 
-Load `senior-engineering` first (discovery, plan, stage gates). This skill covers implementing the server side.
+Load `build-anything` first (discovery, plan, stage gates). This skill covers implementing the server side.
 
 ## API design
 

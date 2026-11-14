@@ -1,9 +1,11 @@
 ---
-name: Senior Engineering
-description: How to build software like a senior engineer — before any code, interview the user with many detailed questions until the project is fully understood, then write a PLAN.md with the full plan; then think step by step and research instead of guessing (works on any model, small or large), write the least code that truly solves the problem, choose the best technology, produce real quality (not AI slop), keep a clean organized folder structure and .md documentation GitHub-native from day one, recommend MCPs/plugins/skills that make the work easier, and at the ~50% mark capture everything about the project in its own project skill. Use when starting or continuing any project, deciding architecture, writing significant code, or when asked to "do your best work".
+name: BuildAnything
+description: The universal build skill — works with any AI, any model, any project. Before any code, interview the user with many detailed questions until the project is fully understood, then write a PLAN.md with the full plan; then think step by step and research instead of guessing (works on any model, small or large), write the least code that truly solves the problem, choose the best technology, produce real quality (not AI slop), keep a clean organized folder structure and .md documentation GitHub-native from day one, recommend MCPs/plugins/skills that make the work easier, and at the ~50% mark capture everything about the project in its own project skill. Use when starting or continuing any project, deciding architecture, writing significant code, or when asked to "do your best work".
 ---
 
-# Senior Engineering
+# BuildAnything
+
+The universal build skill: **any AI, any model, any project.** Load it to turn a vague idea into a shipped, quality product — no matter which model is running this session, this process is what produces the result, not the parameter count. If this skill is present, work follows it; specialized sub-skills (`design-ui`, `frontend`, `backend`, `website`, `mobile-app`, `project-skill-creator`) extend it for specific layers.
 
 ## Core principles
 

@@ -1,11 +1,11 @@
 ---
 name: Website
-description: Build websites — landing pages, marketing sites, static sites, and docs sites — with real content, strong SEO, and top performance scores. Load when the project is a website or a page-heavy project, or when work involves copy, meta tags, sitemaps, or Core Web Vitals. Follows senior-engineering's stage gates and design-ui's visual decisions.
+description: Build websites — landing pages, marketing sites, static sites, and docs sites — with real content, strong SEO, and top performance scores. Load when the project is a website or a page-heavy project, or when work involves copy, meta tags, sitemaps, or Core Web Vitals. Follows build-anything's stage gates and design-ui's visual decisions.
 ---
 
 # Website
 
-Load `senior-engineering` first (discovery, plan, stage gates) and `design-ui` for visual decisions. This skill covers websites whose product *is* the content and the impression.
+Load `build-anything` first (discovery, plan, stage gates) and `design-ui` for visual decisions. This skill covers websites whose product *is* the content and the impression.
 
 ## Process (in order)
 

@@ -1,11 +1,11 @@
 ---
 name: Project Skill Creator
-description: Create the project-specific knowledge skill — a SKILL.md inside the repo that captures everything about this project (stack, structure, conventions, commands, gotchas, state) so any AI can rebuild full context instantly. Load at project day one (skeleton) and at the ~50% mark (full capture), then keep it updated. Used with senior-engineering.
+description: Create the project-specific knowledge skill — a SKILL.md inside the repo that captures everything about this project (stack, structure, conventions, commands, gotchas, state) so any AI can rebuild full context instantly. Load at project day one (skeleton) and at the ~50% mark (full capture), then keep it updated. Used with build-anything.
 ---
 
 # Project Skill Creator
 
-The general skills (`senior-engineering`, `frontend`, …) teach *how* to work. This skill creates the file that teaches *what this specific project is*. It lives **in the repository**, so it travels with GitHub and is available to every future session and every collaborator's AI.
+The general skills (`build-anything`, `frontend`, …) teach *how* to work. This skill creates the file that teaches *what this specific project is*. It lives **in the repository**, so it travels with GitHub and is available to every future session and every collaborator's AI.
 
 ## When
 

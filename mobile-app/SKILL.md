@@ -1,11 +1,11 @@
 ---
 name: Mobile App
-description: Build production mobile apps with React Native/Expo — navigation, platform conventions, offline/error states, permissions, testing, and store submission. Load when the project is a mobile app or work involves native device features, app stores, or mobile-specific UX. Follows senior-engineering's stage gates and design-ui's visual decisions.
+description: Build production mobile apps with React Native/Expo — navigation, platform conventions, offline/error states, permissions, testing, and store submission. Load when the project is a mobile app or work involves native device features, app stores, or mobile-specific UX. Follows build-anything's stage gates and design-ui's visual decisions.
 ---
 
 # Mobile App
 
-Load `senior-engineering` first (discovery, plan, stage gates) and `design-ui` for visuals. This skill covers the mobile-specific layer.
+Load `build-anything` first (discovery, plan, stage gates) and `design-ui` for visuals. This skill covers the mobile-specific layer.
 
 ## Stack (defaults — record in `PLAN.md`)
 
