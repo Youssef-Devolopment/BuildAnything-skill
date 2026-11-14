@@ -75,6 +75,8 @@ When understanding is complete, **write `PLAN.md` at the project root before any
 
 ## Stage gates: finish one stage before starting the next
 
+> **Stage-gate checklist** (every stage, in order): clean least code → tests pass → *if an error appears: run the 5-step recovery loop below* → append `CHANGELOG.md` entry → user review.
+
 The implementation section of `PLAN.md` is ordered stages. Each stage must be **fully closed** before the next one begins:
 
 1. **Clean code only** — the stage's code is the least working code that satisfies its acceptance criteria. Nothing extra, nothing half-done.
@@ -84,11 +86,29 @@ The implementation section of `PLAN.md` is ordered stages. Each stage must be **
 
 Repeat for every stage. A stage is not "done" because the code was written — it is done when it is clean, tested, error-free (or errors reported), and reviewed.
 
+**When a gate clears: append to `CHANGELOG.md`** (see the versioning protocol below) in the same change.
+
+## Failure recovery: the 5-step correction loop
+
+When a test fails, a build breaks, or an error appears — **do not improvise fixes.** Random patches from repeated attempts are how small models create AI slop. Run this loop instead, every single time:
+
+1. **Capture** — save the *exact* error: full message, stack/line, and the command that produced it. No paraphrasing.
+2. **Read** — open the source file(s) the error points at (and their callers). Read the actual code; don't reason from memory of what it probably says.
+3. **Hypothesize** — state **one** root cause as a testable sentence: "X fails because Y." If you can't name one specific cause, you don't understand the error yet — go back to step 2 (read deeper: the error is often in a file away from the crash site — follow the data, not the stack trace).
+4. **Fix minimally** — apply the smallest change that makes the hypothesis true. No drive-by refactors, no "while I'm here" cleanup, no rewriting the file. One fix per iteration.
+5. **Verify** — re-run the exact failing command (then the full suite). Green → done; red → back to step 1 with the *new* error.
+
+Rules:
+- **One fix per loop iteration.** Changing three things at once makes it impossible to know which one worked.
+- **Cap at 3 iterations.** Two loops with no progress → stop, write up (captured error + what you read + your hypothesis + what you tried) and report to the user. Never thrash.
+- **A fix that needs a new dependency, a schema change, or >~20 lines** is a plan change: revise `PLAN.md` first, get approval, then fix.
+- Log every fixed error in `CHANGELOG.md` → Fixed (error text → cause → fix), so the next agent never re-stumbles into it.
+
 ## Keep the repo GitHub-native from day one
 
 Everything needed to understand, run, and continue the project lives **as files in the repository**, committed from the first day — no knowledge that exists only in chat history:
 
-- All docs (`PLAN.md`, `README.md`, `STRUCTURE.md`, `ARCHITECTURE.md`, `STATUS.md`, `DECISIONS.md`) are committed files.
+- All docs (`PLAN.md`, `README.md`, `STRUCTURE.md`, `ARCHITECTURE.md`, `STATUS.md`, `CHANGELOG.md`, `DECISIONS.md`) are committed files.
 - Setup, scripts, and decisions are reproducible from a fresh `git clone`: install → run → test works with no private context.
 - `.gitignore` excludes secrets and build artifacts; `.env.example` documents required variables.
 - CI (if the platform supports it) runs lint + tests on push from day one.
@@ -108,6 +128,29 @@ project/
 ```
 
 One place for each kind of file; no loose files at the root beyond the documented set; naming consistent within every folder.
+
+**Scaffold from templates, don't invent structure.** This skill ships copy-from templates in `templates/` (next to this SKILL.md): skeletons for `PLAN.md`, `README.md`, `STATUS.md`, `ARCHITECTURE.md`, `STRUCTURE.md`, `CHANGELOG.md`, plus `.env.example`, a profiled `.gitignore`, and a GitHub Actions CI workflow. Read `templates/TEMPLATE.md` first — it says which template to copy when and where. Copy → fill every placeholder → delete sections that don't apply; shipping a template with placeholder text is a readiness blocker.
+
+## Versioning & CHANGELOG protocol
+
+`CHANGELOG.md` is the project's chronological memory (template in `templates/CHANGELOG.md`), newest first, append-only:
+
+- **Every stage-gate review**: append a versioned entry `## [0.N — stage name] — YYYY-MM-DD` with `Added` (the outcome + its one-line demo) and `Fixed` (error text → cause → fix, from the recovery loop). Same change as the code.
+- **Release**: bump to `vX.Y.Z`, move `Unreleased` items under the version heading, tag the commit to match. SemVer: fix → patch, feature → minor, breaking → major.
+- **Never rewrite entries.** The history is evidence; `readiness-judge` cross-checks stage completion against it.
+- `STATUS.md` answers "what's true *now*"; `CHANGELOG.md` answers "how did we get here". Keep both current at every gate.
+
+## Cold-start prompt (model/session handoff)
+
+Switching models, tools, or chat windows mid-project must be frictionless. Use this exact 3-line prompt to resume any BuildAnything project from zero context — give it to the user (or paste it into the new session yourself):
+
+```text
+Read PLAN.md, STRUCTURE.md, and .opencode/skills/<project-id>/SKILL.md.
+State our current status from STATUS.md and CHANGELOG.md.
+Tell me the next task from PLAN.md §6 and what you need from me to start it.
+```
+
+Rules: the prompt is only as good as the docs — if STATUS/CHANGELOG are stale, fixing them is part of handoff, not optional. For a *brand-new* project (no docs yet), the cold-start prompt is instead `idea-refiner`'s input: paste your raw idea.
 
 ## Project-specific skill (capture at ~50%)
 
@@ -210,6 +253,7 @@ Maintain `.md` files so someone with zero context — including another AI — c
 
 Maintain at minimum:
 - **`PLAN.md`** — the approved plan from the discovery phase (see above). The contract for what is being built and why.
+- **`CHANGELOG.md`** — append-only timeline: one entry per stage gate (Added/Fixed/Changed), release headings with tags. See the versioning protocol above.
 - **`STRUCTURE.md`** — a plain-language tour of the project for a human reader: the folder/file tree annotated with what each part does, where to make which kind of change, and the main entry points. Someone who has never seen the repo should understand its shape in one read.
 - **`README.md`** — what the project is, how to install, run, test, and deploy it.
 - **`ARCHITECTURE.md`** — the system's shape: major components, how data flows between them, key design decisions and their rationale, technology choices and rejected alternatives.
@@ -235,6 +279,8 @@ Rules for docs:
 - All affected `.md` files are updated so the next AI knows the current state and what to build next.
 - The repo is GitHub-native: a fresh clone installs, runs, tests, and explains itself (`README.md`, `STRUCTURE.md`) with no private context.
 - The folder structure matches the layout decided on day one — files live where they belong, consistently.
+- `CHANGELOG.md` has an entry per cleared stage gate, and releases are tagged to match.
+- Every error hit during the build went through the 5-step recovery loop (no thrash patches; unresolved ones reported to the user).
 - At ~50%: `.opencode/skills/<project-id>/SKILL.md` exists and is current — any AI can rebuild full project context from it alone.
 - Any tool friction worth removing was surfaced to the user as a concrete MCP/plugin/skill recommendation (or confirmed unnecessary).
 - Nothing was guessed: every assumption about the codebase or external APIs was verified.

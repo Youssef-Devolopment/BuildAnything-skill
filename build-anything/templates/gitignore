@@ -1,0 +1,47 @@
+# ── general (always keep) ──
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+tmp/
+.cache/
+dist/
+build/
+coverage/
+*.local
+
+# ── node ──
+node_modules/
+.next/
+.nuxt/
+.turbo/
+*.tsbuildinfo
+
+# ── python ──
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ── go ──
+# binaries, coverage profiles
+
+# ── mobile (expo/react native) ──
+.expo/
+*.orig.*
+web-build/
+
+# ── misc tooling ──
+# *.sqlite3
+# terraform/.terraform/

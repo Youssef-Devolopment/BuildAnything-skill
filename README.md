@@ -25,7 +25,7 @@ The universal build skill set — one system that makes **any AI, with any model
 | **Open Or Private** | `open-or-private` | Asks open-source vs. private, then structures the repo for that choice (license+community files vs. owner-runnable structure). |
 | **Open Source Showcase** | `open-source-showcase` | For open-source projects: SVG logo, a 30-second README (badges, screenshot, tested quickstart), and a one-page GitHub Pages website. |
 
-Reference: [`build-anything/references/stacks.md`](build-anything/references/stacks.md) — opinionated best-stack defaults for web, API, CLI, mobile, ML, and DevOps.
+Reference: [`build-anything/references/stacks.md`](build-anything/references/stacks.md) — opinionated best-stack defaults for web, API, CLI, mobile, ML, and DevOps. Scaffolding templates (`.gitignore`, CI workflow, doc skeletons, `.env.example`) live in [`build-anything/templates/`](build-anything/templates/TEMPLATE.md) — copy, fill, done.
 
 ## Install
 
@@ -52,7 +52,8 @@ OpenCode discovers these automatically; load one with `@<skill-id>` or let the m
 C:\Buildanything skill\
 ├── build-anything/
 │   ├── SKILL.md
-│   └── references/stacks.md
+│   ├── references/stacks.md
+│   └── templates/          # TEMPLATE.md + PLAN/STATUS/README/ARCHITECTURE/STRUCTURE/CHANGELOG skeletons, .env.example, .gitignore, CI workflow
 ├── idea-refiner/SKILL.md
 ├── micro-planner/SKILL.md
 ├── idea-to-product/SKILL.md
