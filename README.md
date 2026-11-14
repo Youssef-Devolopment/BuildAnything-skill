@@ -167,4 +167,4 @@ C:\Buildanything skill\
 
 ## Versioning
 
-Releases are tagged (`v1.0`, `v1.1`, …). The commit history is the changelog.
+Releases are tagged (`v1.0`, `v1.1`, …) and summarized in [`CHANGELOG.md`](CHANGELOG.md) — newest first, append-only, one entry per release. The commit history is the full record behind it. This repo follows its own protocol: append a `CHANGELOG.md` entry in the same commit as the change, tag to match.

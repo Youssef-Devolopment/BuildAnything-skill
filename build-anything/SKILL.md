@@ -151,6 +151,25 @@ Repeat for every stage. A stage is not "done" because the code was written — i
 3. `STATUS.md` — flip the stage ledger line: `- [x] Stage N: {{outcome}} (Completed on YYYY-MM-DD)` and mark the next one `- [ ] … — In Progress`. This ledger is the anti-context-drift tracker: a fresh session reads it and knows *precisely* where work stopped.
 4. Any doc the stage's behavior changed (same-change doc rule).
 
+## Dry-run preview: say it before you do it (major changes)
+
+Before executing any **major** modification, post a two-line preview and get a yes — the user has 100% control over their code:
+
+```text
+Dry run: I'll change <file(s)> by <what — one sentence> — because <why/risk>.
+Approve? (y, or tell me to change it)
+```
+
+**What counts as major (preview required):** rewriting a file wholesale, touching 3+ files in one move, adding a dependency, any schema/migration change, anything touching auth, payments, or data deletion, and anything destructive or hard to reverse (overwrites, deletes, force operations).
+
+**What doesn't (don't nag):** the next unchecked `TODO.md` task already in the approved plan, test fixes, formatting, docs edits — the stage gates already cover those.
+
+Rules:
+- The preview states files + approach + risk, not an essay; name one alternative in a line if a real choice exists.
+- No code for that change is written before the approval. Read-only investigation is always allowed without asking.
+- If the user already granted hands-off mode ("just build it"), the preview becomes a statement before execution instead of a blocking question — but destructive or irreversible changes still block.
+- An approval covers exactly what was described; a different change needs a new preview. "Go on for the rest of the stage" grants blanket approval until the next gate.
+
 ## Pre-flight sanity check (mandatory)
 
 Before outputting a stage's code — and again before any deploy/release — run `templates/CHECKLIST.md` and answer every line with evidence:
