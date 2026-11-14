@@ -68,6 +68,17 @@ From the repo folder:
 
 Each run copies every skill folder (those containing `SKILL.md`) into the chosen target and prints what was installed/skipped.
 
+### Where does everything go? (global vs project)
+
+| Piece | Where it lives | Why |
+|---|---|---|
+| `install.ps1` | **In the repo** (root, next to `README.md`) — already committed | You run it from your clone; it reads the skill folders next to it. Don't copy it anywhere else. |
+| The skills themselves | Your agent's skills folder (clone or copy — Options 1–3) | That's what makes them load |
+| The `skills` registration (Option 2) | **Global config** — `~/.config/opencode/opencode.json` (Windows: `C:\Users\<you>\.config\opencode\opencode.json`) | Applies to **every project** on your machine — recommended, this is how this machine is set up |
+| | Project config — `opencode.json` in one project's root | Only applies inside that one project — use only if you want the skill exclusively for that repo |
+
+Both config levels work and **merge**: OpenCode combines the `skills` arrays from global + project configs, so you can register globally and never touch per-project files again. The skills themselves are identical either way.
+
 ### Option 4 — No git? Download the ZIP
 
 1. On GitHub: **Code → Download ZIP**
