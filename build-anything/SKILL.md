@@ -28,9 +28,43 @@ Treat these as mandatory steps, not optional extras — they are how a smaller m
 5. **Stress-test your own answer.** Ask "what's wrong with this?" before presenting it: check edge cases, false assumptions, and whether it actually satisfies the original request. Verify by running/reading, never by hoping.
 6. **Escalate instead of guessing.** If reasoning stalls — contradictory evidence, missing information, repeated failed attempts — stop and ask the user or investigate further. A confident wrong answer is the worst outcome; a slow, verified right answer is the senior-engineer answer.
 
+## Dynamic Initialization Protocol (run this first, always)
+
+Before anything else — before questions, before templates, before assuming an empty folder — **inspect the workspace and adapt to it.** This skill is a core orchestrator: it must fit any folder, any stack, any project state (empty directory, half-built React app, Python script, Godot repo, legacy codebase) with zero manual reconfiguration.
+
+### Phase 0 — Project auto-detection
+
+Run this the moment the skill is invoked in a project context:
+
+1. **Survey the workspace** — list the root, read existing manifests and configs (`package.json`, `pyproject.toml`, `go.mod`, `project.godot`, `pubspec.yaml`, `Cargo.toml`, lockfiles), git status/history, CI configs, and any existing `PLAN.md` / `TODO.md` / `STATUS.md` / `README` / docs.
+2. **Classify the state:**
+   - **Empty/new** → full pipeline: `idea-refiner` → `micro-planner` → build (discovery below runs in full).
+   - **Existing project, no docs** → detection-first: derive the stack and architecture from code, run discovery *against reality* (ask only what the code can't answer), backfill the doc set, then continue.
+   - **Existing project with docs** → read `PLAN.md`/`TODO.md`/`STATUS.md` first: **resume, don't restart.** Update stale docs, pick up the next unchecked task.
+   - **Not a project at all** (single script, scratch folder) → shrink the process to match: still plan before code, still gate — but one stage, minimal docs.
+3. **State what you detected** in one short block before proceeding: detected stack, project state, what you'll do differently because of it. Wrong detection = ask, don't assume.
+
+### Dynamic context injection
+
+Everything the workflow decides is fed from three pillars gathered by detection + discovery, and injected into `PLAN.md` / `TODO.md` when they're written:
+
+1. **The Stack** — the *active* technologies detected in the workspace (Next.js, Godot, Python, Expo, …), not a default. Templates, CI, and sub-skill choice adapt to it (`templates/TEMPLATE.md` says how; unknown stacks → follow the repo's existing conventions).
+2. **The Objective** — what this session must build, refactor, or fix. For a resumed project this comes from `TODO.md`'s next unchecked task; for a new one from `idea-refiner`.
+3. **Constraints & preferences** — required libraries, architectural rules, forbidden patterns: explicit user wishes *plus* whatever the existing codebase already implies (its conventions are constraints until the user says otherwise).
+
+### Universal stage gates (same pipeline, any scale)
+
+The execution pipeline is invariant — only its size adapts to the project:
+
+1. **Inception & Discovery** — auto-detect (Phase 0), interview what's unknown, generate the tailored `PLAN.md` + granular `TODO.md` for *this* stack and state.
+2. **Execution & task breakdown** — implement tasks atomically, `- [x]` each in `TODO.md` upon verification (tests/lint), before the next.
+3. **Self-correction loop** — any build/test/runtime error in *that specific codebase* triggers the 5-step recovery loop immediately — same protocol, whatever the stack.
+
+A 20-stage product and a one-file script share this pipeline; only the number of stages and docs differ. Never scale the *rigor* down (plan → gate → verify → document), only the ceremony.
+
 ## Discovery: ask until you fully understand, then plan
 
-**Before writing a single line of code, run this phase. Do not skip it, even for "small" tasks.**
+**Before writing a single line of code, run this phase. Do not skip it, even for "small" tasks.** (Phase 0 auto-detection above runs first — for resumed projects, much of this phase is answered by the docs already on disk.)
 
 ### Phase A — Interview the user
 Ask questions in batches until you have complete understanding. A good default is 5–15 questions (more for a new/complex project), grouped by topic, offered together with a `question` tool or as one numbered list so the user can answer in one pass. Keep asking follow-ups while anything important is still unclear. Cover:
@@ -248,7 +282,7 @@ Not listed but needed (e.g. CLI tools, data pipelines, payments)? Follow this sk
 ## Workflow
 
 ### Step 1: Understand before building
-- Run the **Discovery** phase above first: interview the user until you fully understand, then write and get approval on `PLAN.md`.
+- Run **Phase 0 auto-detection** first (survey workspace → classify state → state what you detected), then the **Discovery** phase: interview the user until fully understood, then write and get approval on `PLAN.md` (+ `TODO.md` per Phase D). For resumed projects: read existing docs and continue from the next unchecked task.
 - Read the whole relevant surface: existing source, `README`/docs, package manifests, config files, tests.
 - List what must be true for this to work (constraints, data shapes, integrations) and verify each one rather than assuming.
 
