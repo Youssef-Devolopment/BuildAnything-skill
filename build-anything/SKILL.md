@@ -124,13 +124,32 @@ During the work, watch for friction a tool would remove. When one would material
 
 Never silently depend on a tool that isn't installed: check availability, and if absent either work without it or ask the user to install it first.
 
+## The pipeline (in order)
+
+For a new project, run these skills as one pipeline — each hands off to the next:
+
+1. **`idea-refiner`** — raw idea/prompt → polished, AI-proof `IDEA.md` (1–3 passes until perfect)
+2. **`micro-planner`** — `IDEA.md` → `PLAN.md` with many **small** stages (never batch plans)
+3. **`build-anything`** (this skill) — executes stages under stage gates; tests everything, fixes or reports every error
+4. **`recommendations`** — what the project still needs: prioritized feature/idea list (built only if approved)
+5. **`readiness-judge`** — independent verdict: READY / READY WITH FIXES / NOT READY, with evidence
+6. **`open-or-private`** — user picks open-source vs. private; repo structured accordingly; if open source, **`open-source-showcase`** adds logo, 30-second README, and project website
+
+Skip nothing without saying why. `idea-to-product` wraps steps 1–6 for non-developers.
+
 ## Delegate to sub-skills
 
 This skill is the orchestrator. For specialized work, load the matching sub-skill instead of improvising:
 
 | Task | Load |
 |---|---|
+| Raw idea/prompt → detailed, AI-understandable `IDEA.md` | `idea-refiner` |
+| Brief → `PLAN.md` with small, verifiable stages | `micro-planner` |
 | The user has only an idea (developer or not) — translate it into a product | `idea-to-product` |
+| What should we add next? — prioritized features/ideas | `recommendations` |
+| Is the project actually ready? — independent evidence-based verdict | `readiness-judge` |
+| Open-source or private? — ask, then structure the repo for that choice | `open-or-private` |
+| Open source: logo, 30-second README, project website (GitHub Pages) | `open-source-showcase` |
 | UI/UX, visual design, design systems | `design-ui` |
 | Frontend implementation (components, state, routing, performance) | `frontend` |
 | Backend implementation (APIs, data models, auth, business logic) | `backend` |

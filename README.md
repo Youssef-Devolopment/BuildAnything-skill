@@ -6,7 +6,9 @@ The universal build skill set — one system that makes **any AI, with any model
 
 | Skill | ID | What it does |
 |---|---|---|
-| **BuildAnything** | `build-anything` | The orchestrator: discovery interview → `PLAN.md` → stage gates (clean least-code, test, fix/report errors, user review) → GitHub-native docs. Reasoning discipline for any model size, "least code wins", and "deliver better than asked". |
+| **BuildAnything** | `build-anything` | The orchestrator + full pipeline: idea-refiner → micro-planner → stage-gated build (clean least-code, test, fix/report errors, user review) → recommendations → readiness-judge → open-or-private. GitHub-native docs, reasoning discipline for any model size, "least code wins", "deliver better than asked". |
+| **Idea Refiner** | `idea-refiner` | Raw prompt/vague idea → polished, AI-understandable `IDEA.md` in 1–3 passes. |
+| **Micro Planner** | `micro-planner` | `IDEA.md` → `PLAN.md` of many small, individually verifiable stages — never batch plans. |
 | **Idea To Product** | `idea-to-product` | For the user who has *only an idea* — developer or not. Plain-language interview, tech decisions made for them, a readable plan, and a build that beats what they imagined. |
 | **Design UI** | `design-ui` | Design systems, layout, typography, color, every-state design, WCAG AA accessibility. |
 | **Frontend** | `frontend` | Components, state hierarchy, data fetching, performance, a11y, testing. |
@@ -18,10 +20,16 @@ The universal build skill set — one system that makes **any AI, with any model
 | **Deployment** | `deployment` | CI/CD, environments, hosting choices, releases, rollback, go-live checklist. |
 | **AI Features** | `ai-features` | LLM integration, prompts as code, RAG, evals, cost/latency, guardrails. |
 | **Project Skill Creator** | `project-skill-creator` | Builds the project's own in-repo SKILL.md (day one skeleton + ~50% full capture). |
+| **Recommendations** | `recommendations` | After the build: prioritized list of missing features/ideas with evidence — nothing built until approved. |
+| **Readiness Judge** | `readiness-judge` | Independent evidence-based verdict: READY / READY WITH FIXES / NOT READY. |
+| **Open Or Private** | `open-or-private` | Asks open-source vs. private, then structures the repo for that choice (license+community files vs. owner-runnable structure). |
+| **Open Source Showcase** | `open-source-showcase` | For open-source projects: SVG logo, a 30-second README (badges, screenshot, tested quickstart), and a one-page GitHub Pages website. |
 
 Reference: [`build-anything/references/stacks.md`](build-anything/references/stacks.md) — opinionated best-stack defaults for web, API, CLI, mobile, ML, and DevOps.
 
 ## Install
+
+This repo lives at **`C:\Buildanything skill`** and is registered as a skills source in `~/.config/opencode/opencode.json` (`"skills": ["C:\\Buildanything skill"]`), so OpenCode loads it from there.
 
 **Windows (PowerShell):**
 
@@ -32,8 +40,8 @@ Reference: [`build-anything/references/stacks.md`](build-anything/references/sta
 **Manual / any OS:**
 
 ```bash
-git clone <this-repo-url> ~/.config/opencode/skills
-# Windows: copy the folders into C:\Users\<you>\.config\opencode\skills\
+git clone <this-repo-url> "C:\Buildanything skill"   # or any folder
+# then add that folder path to the "skills" array in opencode.json
 ```
 
 OpenCode discovers these automatically; load one with `@<skill-id>` or let the model load it via the `skill` tool. Compatible with Claude Code (`.claude/skills`) and other agents (`.agents/skills`) — `install.ps1` can target those too.
@@ -41,10 +49,12 @@ OpenCode discovers these automatically; load one with `@<skill-id>` or let the m
 ## Layout
 
 ```
-skills/
+C:\Buildanything skill\
 ├── build-anything/
 │   ├── SKILL.md
 │   └── references/stacks.md
+├── idea-refiner/SKILL.md
+├── micro-planner/SKILL.md
 ├── idea-to-product/SKILL.md
 ├── design-ui/SKILL.md
 ├── frontend/SKILL.md
@@ -55,6 +65,10 @@ skills/
 ├── testing/SKILL.md
 ├── deployment/SKILL.md
 ├── ai-features/SKILL.md
+├── recommendations/SKILL.md
+├── readiness-judge/SKILL.md
+├── open-or-private/SKILL.md
+├── open-source-showcase/SKILL.md
 ├── project-skill-creator/SKILL.md
 ├── install.ps1
 └── README.md
