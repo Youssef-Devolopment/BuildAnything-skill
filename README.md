@@ -29,22 +29,61 @@ Reference: [`build-anything/references/stacks.md`](build-anything/references/sta
 
 ## Install
 
-This repo lives at **`C:\Buildanything skill`** and is registered as a skills source in `~/.config/opencode/opencode.json` (`"skills": ["C:\\Buildanything skill"]`), so OpenCode loads it from there.
+Repo: **https://github.com/Youssef-Devolopment/BuildAnything-skill** (public — clone, download, or copy freely)
 
-**Windows (PowerShell):**
+Pick one method. All of them give you the same 18 skills.
+
+### Option 1 — OpenCode, one-liner (auto-discovery, recommended)
+
+Clone straight into OpenCode's global skills folder — it discovers nested `SKILL.md` files automatically, no config changes:
 
 ```powershell
-.\install.ps1
+git clone https://github.com/Youssef-Devolopment/BuildAnything-skill.git "$env:USERPROFILE\.config\opencode\skills\buildanything"
 ```
 
-**Manual / any OS:**
+macOS/Linux: `git clone https://github.com/Youssef-Devolopment/BuildAnything-skill.git ~/.config/opencode/skills/buildanything`
 
-```bash
-git clone <this-repo-url> "C:\Buildanything skill"   # or any folder
-# then add that folder path to the "skills" array in opencode.json
+### Option 2 — OpenCode, clone anywhere + register (single copy, `git pull` updates)
+
+Clone to any folder (this machine uses `C:\Buildanything skill`), then add it to `~/.config/opencode/opencode.json`:
+
+```jsonc
+{
+  "skills": ["C:\\Buildanything skill"]
+}
 ```
 
-OpenCode discovers these automatically; load one with `@<skill-id>` or let the model load it via the `skill` tool. Compatible with Claude Code (`.claude/skills`) and other agents (`.agents/skills`) — `install.ps1` can target those too.
+OpenCode merges `skills` arrays from all config files, so append this to your existing config — don't replace it. Restart OpenCode to pick it up.
+
+### Option 3 — Claude Code / other agents (copy install)
+
+From the repo folder:
+
+```powershell
+.\install.ps1 -Target claude    # -> ~/.claude/skills
+.\install.ps1 -Target agents    # -> ~/.agents/skills
+.\install.ps1 -Target opencode  # -> ~/.config/opencode/skills (copy method instead of clone)
+.\install.ps1 -Force            # overwrite an existing older copy
+```
+
+Each run copies every skill folder (those containing `SKILL.md`) into the chosen target and prints what was installed/skipped.
+
+### Option 4 — No git? Download the ZIP
+
+1. On GitHub: **Code → Download ZIP**
+2. Extract anywhere
+3. Run `.\install.ps1 -Target claude|agents|opencode`, or copy the skill folders into your agent's skills directory by hand
+
+### Updating
+
+| Method | Update command |
+|---|---|
+| Clone (Option 1/2) | `git pull` in the clone folder |
+| Copy (Option 3/4) | Re-run `install.ps1 -Target … -Force` |
+
+### Using the skills
+
+OpenCode discovers them automatically — load one with `@<skill-id>` (e.g. `@build-anything`) or let the model load it via the `skill` tool. Claude Code picks up `-Target claude` installs the same way.
 
 ## Layout
 

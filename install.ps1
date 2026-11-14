@@ -1,9 +1,12 @@
 # Install BuildAnything skills into an agent's skills directory.
-# Usage:
-#   .\install.ps1                 # OpenCode global (default)
-#   .\install.ps1 -Target claude  # ~/.claude/skills
-#   .\install.ps1 -Target agents  # ~/.agents/skills
+# Usage (run from anywhere — it reads the skill folders next to this script):
+#   .\install.ps1                 # OpenCode global (~/.config/opencode/skills)
+#   .\install.ps1 -Target claude  # ~/.claude/skills (Claude Code)
+#   .\install.ps1 -Target agents  # ~/.agents/skills (other agents)
 #   .\install.ps1 -Force           # overwrite existing skills
+#
+# Prefer cloning instead? See README "Option 1/2" — clone the repo into the
+# skills folder (auto-discovery) or register its path in opencode.json.
 
 param(
     [ValidateSet("opencode", "claude", "agents")]
