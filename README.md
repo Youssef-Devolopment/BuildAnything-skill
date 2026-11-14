@@ -31,7 +31,12 @@ Reference: [`build-anything/references/stacks.md`](build-anything/references/sta
 
 Repo: **https://github.com/Youssef-Devolopment/BuildAnything-skill** (public — clone, download, or copy freely)
 
-Pick one method. All of them give you the same 18 skills.
+Pick **one** method. All of them give you the same 18 skills.
+
+> ### ⚠️ Use exactly ONE option — never two
+> Options 1–4 are **alternatives**, not steps. Running two (e.g. cloning into the skills folder *and* registering a path in `opencode.json`) creates **two copies** — the stale one can win, updates silently stop applying, and skills may flicker or disappear.
+>
+> Already ran more than one? Run **`.\install.ps1 -Doctor`** — it detects every copy, prints them, and gives the exact fix.
 
 ### Option 1 — OpenCode, one-liner (auto-discovery, recommended)
 
@@ -42,6 +47,8 @@ git clone https://github.com/Youssef-Devolopment/BuildAnything-skill.git "$env:U
 ```
 
 macOS/Linux: `git clone https://github.com/Youssef-Devolopment/BuildAnything-skill.git ~/.config/opencode/skills/buildanything`
+
+**If you did Option 1, stop here — do NOT also do Option 2.**
 
 ### Option 2 — OpenCode, clone anywhere + register (single copy, `git pull` updates)
 
@@ -91,6 +98,16 @@ Both config levels work and **merge**: OpenCode combines the `skills` arrays fro
 |---|---|
 | Clone (Option 1/2) | `git pull` in the clone folder |
 | Copy (Option 3/4) | Re-run `install.ps1 -Target … -Force` |
+
+### Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| Skills missing / flickering / updates not applying | Two copies installed, the stale one wins | Run `.\install.ps1 -Doctor` → it lists every copy and the exact cleanup → restart OpenCode |
+| `.\install.ps1 -Doctor` says **NOT INSTALLED** | Skills exist only in a folder no agent scans | Run `.\install.ps1 -Target opencode` (or do Option 1) — pick ONE |
+| Not sure what you did before | — | `.\install.ps1 -Doctor` is always safe to run; it changes nothing |
+
+The doctor is read-only: it only inspects and reports (exit 0 = one install ✓, 1 = duplicate ✗, 2 = not installed).
 
 ### Using the skills
 
