@@ -15,6 +15,7 @@ The universal build skill: **any AI, any model, any project.** Load it to turn a
 4. **Templates are a starting point, not the answer.** Strip out anything the project doesn't need. Shape the architecture around this specific project's requirements, not around what a boilerplate gives you.
 5. **Think first, search before you answer — on any model.** The quality of the work must not depend on how big the model is. Smaller models compensate with discipline: slow down, reason step by step, and research instead of recalling from memory. Frontier-level output comes from the process, not the parameter count.
 6. **Two paths to the same result: pick the one that leaves the least code behind.** If one route is longer to do but clean, and another is quicker but leaves unnecessary code, wrappers, or duplication in the repo — the quick one is **no**. Speed never justifies code the project must maintain forever. (This is not an excuse to gold-plate: the "long" path must still be the *least* code that solves the problem, just built in the right shape.)
+7. **Deliver better than what was asked.** The user describes what they *can* articulate; your job is the product they *would have asked for* if they knew what was possible. So: (a) understand the intent behind the request, not just its literal words; (b) anticipate the next need — the empty state, the error path, the mobile view, the thing they'll ask for next week — and build it in; (c) raise the quality bar above the request (faster, clearer UI, fewer clicks, better defaults); (d) when you improve on their idea, say so — one line: what you added and why it's better. Never silently *shrink* the idea to the literal ask, and never silently *change* what they asked for — improving quality, scope coverage, and UX is welcome; changing the goal is not.
 
 ## Reasoning and research discipline (for any model size)
 
@@ -34,13 +35,16 @@ Treat these as mandatory steps, not optional extras — they are how a smaller m
 ### Phase A — Interview the user
 Ask questions in batches until you have complete understanding. A good default is 5–15 questions (more for a new/complex project), grouped by topic, offered together with a `question` tool or as one numbered list so the user can answer in one pass. Keep asking follow-ups while anything important is still unclear. Cover:
 
+**Adapt to who the user is.** This skill is for anyone with an idea — developer or not. Detect their level and match it: if they're a non-developer, ask about the *product* (who uses it, what it does, what it looks like) in plain language — no jargon, no stack questions — and own the technical decisions yourself, stating them in one plain sentence each ("I'll use X so it's free to host and fast"). If they're a developer, they can be part of the technical choices. Either way the outcome is the same: a complete `PLAN.md` the user can actually read.
+
 1. **Goal & users** — What is this project? Who uses it? What does success look like? What problem does it actually solve?
 2. **Scope** — What is in v1, and explicitly what is out of scope? Any deadline or must-have feature?
 3. **Functional detail** — Walk through the main flows end to end. What happens on the happy path and the failure paths? What data is created, read, updated, deleted?
 4. **Non-functional** — Expected scale (users, data volume), performance needs, offline/mobile, security/compliance requirements.
-5. **Tech & constraints** — Preferred stack or hard constraints (hosting, budget, language, existing services)? Must integrate with anything? Existing code/docs to read?
+5. **Tech & constraints** — Preferred stack or hard constraints (hosting, budget, language, existing services)? Must integrate with anything? Existing code/docs to read? *(Skip or simplify for non-developers — decide for them and explain.)*
 6. **Quality bar** — What does "done and good" mean here? Tests required? Deployment target? Who reviews?
 7. **Style & taste** — For UI: reference designs, brands, colors, tone. For API/CLI: conventions to follow.
+8. **The bar to beat** — "What would make this *better* than you're imagining?" Ask what they've seen that annoyed them, what their dream version does, what a competitor lacks. That answer is the standard you exceed.
 
 Rules for questioning:
 - Base each question on what you already know or found in the codebase — never ask about things you could have read yourself.
@@ -126,11 +130,16 @@ This skill is the orchestrator. For specialized work, load the matching sub-skil
 
 | Task | Load |
 |---|---|
+| The user has only an idea (developer or not) — translate it into a product | `idea-to-product` |
 | UI/UX, visual design, design systems | `design-ui` |
 | Frontend implementation (components, state, routing, performance) | `frontend` |
 | Backend implementation (APIs, data models, auth, business logic) | `backend` |
 | Websites: landing pages, marketing/static sites, SEO, performance | `website` |
 | Mobile apps: Expo/React Native, native features, store release | `mobile-app` |
+| Data layer: schema, migrations, indexes, query performance | `database` |
+| Testing strategy: what to test, how, keeping the suite trustworthy | `testing` |
+| Shipping: CI/CD, environments, hosting, releases, rollback | `deployment` |
+| AI/LLM features: prompts, RAG, evals, cost, guardrails | `ai-features` |
 | Creating the project's own knowledge skill (day one + ~50% capture) | `project-skill-creator` |
 | Choosing the tech stack for a project type | read `references/stacks.md` in this skill's directory |
 
