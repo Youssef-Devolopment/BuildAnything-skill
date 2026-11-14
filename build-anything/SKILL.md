@@ -16,6 +16,7 @@ The universal build skill: **any AI, any model, any project.** Load it to turn a
 5. **Think first, search before you answer — on any model.** The quality of the work must not depend on how big the model is. Smaller models compensate with discipline: slow down, reason step by step, and research instead of recalling from memory. Frontier-level output comes from the process, not the parameter count.
 6. **Two paths to the same result: pick the one that leaves the least code behind.** If one route is longer to do but clean, and another is quicker but leaves unnecessary code, wrappers, or duplication in the repo — the quick one is **no**. Speed never justifies code the project must maintain forever. (This is not an excuse to gold-plate: the "long" path must still be the *least* code that solves the problem, just built in the right shape.)
 7. **Deliver better than what was asked.** The user describes what they *can* articulate; your job is the product they *would have asked for* if they knew what was possible. So: (a) understand the intent behind the request, not just its literal words; (b) anticipate the next need — the empty state, the error path, the mobile view, the thing they'll ask for next week — and build it in; (c) raise the quality bar above the request (faster, clearer UI, fewer clicks, better defaults); (d) when you improve on their idea, say so — one line: what you added and why it's better. Never silently *shrink* the idea to the literal ask, and never silently *change* what they asked for — improving quality, scope coverage, and UX is welcome; changing the goal is not.
+8. **Judge visual polish yourself — animation and 3D included.** For anything visual (website, app UI, landing page), decide on your own whether motion or 3D would make the result genuinely better — never wait to be asked, and never skip it out of timidity. Pick from the tier ladder in `design-ui` (micro-interactions → choreographed motion → showpiece 3D): go up a tier only when it clearly improves how the product looks, feels, or is understood; stay down when the work is content-dense/functional or the user explicitly asked for plain. Hard limits that always win: `prefers-reduced-motion` respected, content readable before effects load, the performance budget stays green (`website` keeps Lighthouse ≥95), and least code first (CSS before JS libraries; never a 3D framework for a hover state). State the judgment in one line at review either way: "I added X because Y" / "skipped X because Y" — polish is welcome, silent scope changes are not.
 
 ## Reasoning and research discipline (for any model size)
 
@@ -133,7 +134,7 @@ When understanding is complete, **write `PLAN.md` at the project root before any
 
 ## Stage gates: finish one stage before starting the next
 
-> **Stage-gate checklist** (every stage, in order): clean least code → tests pass → *if any command fails: run the 5-step recovery loop below* → **pre-flight sanity check** (below) → check off this stage's `TODO.md` tasks + append `CHANGELOG.md` entry + flip the `STATUS.md` stage ledger → user review.
+> **Stage-gate checklist** (every stage, in order): clean least code → tests pass → *if any command fails: run the 5-step recovery loop below* → **pre-flight sanity check** (below) → check off this stage's `TODO.md` tasks + append `CHANGELOG.md` entry + flip the `STATUS.md` stage ledger → user review **with a demo** (run the feature and show it — a screenshot for UI, the command's real output for the rest; "tests green" alone is not a demo).
 
 The implementation section of `PLAN.md` is ordered stages. Each stage must be **fully closed** before the next one begins:
 
@@ -157,8 +158,9 @@ Before outputting a stage's code — and again before any deploy/release — run
 1. **Env vars** — everything the code reads exists in `.env.example`?
 2. **Dependencies** — everything imported is declared in the package file, lockfile-consistent?
 3. **No secrets or placeholders** — zero hardcoded keys, no TODO/lorem/fake data pretending to work?
+4. **Security floor** — no secrets/keys committed (history included), `.env*` gitignored, dependency audit clean (`npm audit` / `pip-audit` / equivalent where the stack has one), no dangerously permissive defaults (open CORS, debug mode in prod)?
 
-Before the *gate* closes additionally: tests green from the README command, fresh-clone path works, docs touched, secrets scan clean. One explicit `no` = don't ship; fix first (cheap now, expensive later). Never answer "should be fine" — the answer needs the command run or the file:line checked.
+Before the *gate* closes additionally: tests green from the README command, fresh-clone path works, docs touched, secrets scan clean, dependency audit clean. One explicit `no` = don't ship; fix first (cheap now, expensive later). Never answer "should be fine" — the answer needs the command run or the file:line checked.
 
 ## Failure recovery: the 5-step correction loop
 
@@ -265,6 +267,7 @@ This skill is the orchestrator. For specialized work, load the matching sub-skil
 | Is the project actually ready? — independent evidence-based verdict | `readiness-judge` |
 | Open-source or private? — ask, then structure the repo for that choice | `open-or-private` |
 | Open source: logo, 30-second README, project website (GitHub Pages) | `open-source-showcase` |
+| Rebuild an existing product ("clone X") — any kind | `clone-anything` (websites → `clone-website`, apps → `clone-app`) |
 | UI/UX, visual design, design systems | `design-ui` |
 | Frontend implementation (components, state, routing, performance) | `frontend` |
 | Backend implementation (APIs, data models, auth, business logic) | `backend` |

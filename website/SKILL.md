@@ -24,6 +24,7 @@ Load `build-anything` first (discovery, plan, stage gates) and `design-ui` for v
 ## Quality bar
 
 - **Performance**: Lighthouse ≥95 performance/a11y/SEO; Core Web Vitals green (LCP <2.5s, CLS <0.1, INP <200ms); images `srcset` + explicit dimensions + lazy below fold; self-hosted/minimal fonts; no third-party script that costs >100ms without justification.
+- **Effects budget**: animation/3D decoration is *encouraged* on landing/marketing pages (pick a tier from `design-ui`'s ladder) — but it must survive the numbers above. Effect code ≤ ~50KB gzipped, nothing delays LCP or blocks input, content fully readable before/without effects. If an effect drops a score below the bar, shrink or cut it — the score is non-negotiable, the decoration is not. State at review what you added and why.
 - **SEO**: unique title + meta description per page; one `h1`; semantic heading order; Open Graph + Twitter card images; `sitemap.xml` + `robots.txt`; canonical URLs; JSON-LD structured data where it fits (Organization, Product, FAQ).
 - **Accessibility**: WCAG AA contrast, keyboard-navigable, visible focus, alt text, landmarks.
 - **Responsive**: real content at 320/768/1024/1440px; no overflow; touch targets ≥44px.

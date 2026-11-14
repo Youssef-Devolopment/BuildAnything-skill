@@ -10,6 +10,9 @@ The universal build skill set — one system that makes **any AI, with any model
 | **Idea Refiner** | `idea-refiner` | Raw prompt/vague idea → polished, AI-understandable `IDEA.md` in 1–3 passes. |
 | **Micro Planner** | `micro-planner` | `IDEA.md` → `PLAN.md` of many small, individually verifiable stages — never batch plans. |
 | **Idea To Product** | `idea-to-product` | For the user who has *only an idea* — developer or not. Plain-language interview, tech decisions made for them, a readable plan, and a build that beats what they imagined. |
+| **Clone Anything** | `clone-anything` | Rebuild an existing product: capture the reference, feature inventory, v1 core loop only, original branding/assets, side-by-side verification, beat-the-original bar. |
+| **Clone Website** | `clone-website` | Site cloning method: capture at 4 breakpoints, section/copy/asset inventory, rebuild section by section, verify in a real browser, Lighthouse ≥95 intact. |
+| **Clone App** | `clone-app` | App cloning method: record flows, screen/navigation map, reverse-engineered data model, core loop first, same-flow side-by-side walks at every gate. |
 | **Design UI** | `design-ui` | Design systems, layout, typography, color, every-state design, WCAG AA accessibility. |
 | **Frontend** | `frontend` | Components, state hierarchy, data fetching, performance, a11y, testing. |
 | **Backend** | `backend` | API design, schema-first data, deny-by-default security, observability, integration tests. |
@@ -31,7 +34,7 @@ Reference: [`build-anything/references/stacks.md`](build-anything/references/sta
 
 Repo: **https://github.com/Youssef-Devolopment/BuildAnything-skill** (public — clone, download, or copy freely)
 
-Pick **one** method. All of them give you the same 18 skills.
+Pick **one** method. All of them give you the same 21 skills.
 
 > ### ⚠️ Use exactly ONE option — never two
 > Options 1–4 are **alternatives**, not steps. Running two (e.g. cloning into the skills folder *and* registering a path in `opencode.json`) creates **two copies** — the stale one can win, updates silently stop applying, and skills may flicker or disappear.
@@ -96,8 +99,24 @@ Both config levels work and **merge**: OpenCode combines the `skills` arrays fro
 
 | Method | Update command |
 |---|---|
-| Clone (Option 1/2) | `git pull` in the clone folder |
+| Clone (Option 1/2) | `.\update.ps1` (or plain `git pull`) in the clone folder |
 | Copy (Option 3/4) | Re-run `install.ps1 -Target … -Force` |
+
+### Auto-update (clones)
+
+`update.ps1` (next to this README) manages updates for clone installs:
+
+```powershell
+.\update.ps1             # fetch + pull new commits (fast-forward only), show what changed
+.\update.ps1 -Status     # just check: up to date or behind? (changes nothing)
+.\update.ps1 -Schedule   # register a hidden daily Windows task that runs it for you
+.\update.ps1 -Unschedule # remove that task
+```
+
+- **Never overwrites your edits** — if you modified the clone by hand it aborts and tells you to commit/stash first.
+- Prints **"Restart OpenCode"** after a real update — skill files only reload on restart.
+- `-Schedule` runs daily at 09:00 in a hidden window and only reports when there's something new. On macOS/Linux it prints a `crontab` line instead (Windows tasks don't exist there).
+- Copy installs (Options 3/4) can't self-update — the script detects that and points you back to `install.ps1 -Force`.
 
 ### Troubleshooting
 
@@ -111,7 +130,7 @@ The doctor is read-only: it only inspects and reports (exit 0 = one install ✓,
 
 ### Using the skills
 
-OpenCode discovers them automatically — load one with `@<skill-id>` (e.g. `@build-anything`) or let the model load it via the `skill` tool. Claude Code picks up `-Target claude` installs the same way.
+OpenCode discovers them automatically — load one with `@<skill-id>` (e.g. `@build-anything`) or let the model load it via the `skill` tool. Just describing the job often loads the right one too ("clone this landing page" → `clone-website`). Claude Code picks up `-Target claude` installs the same way.
 
 ## Layout
 
@@ -124,6 +143,9 @@ C:\Buildanything skill\
 ├── idea-refiner/SKILL.md
 ├── micro-planner/SKILL.md
 ├── idea-to-product/SKILL.md
+├── clone-anything/SKILL.md
+├── clone-website/SKILL.md
+├── clone-app/SKILL.md
 ├── design-ui/SKILL.md
 ├── frontend/SKILL.md
 ├── backend/SKILL.md
@@ -139,6 +161,7 @@ C:\Buildanything skill\
 ├── open-source-showcase/SKILL.md
 ├── project-skill-creator/SKILL.md
 ├── install.ps1
+├── update.ps1
 └── README.md
 ```
 
