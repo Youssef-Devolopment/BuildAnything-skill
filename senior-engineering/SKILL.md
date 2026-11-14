@@ -1,0 +1,210 @@
+---
+name: Senior Engineering
+description: How to build software like a senior engineer — before any code, interview the user with many detailed questions until the project is fully understood, then write a PLAN.md with the full plan; then think step by step and research instead of guessing (works on any model, small or large), write the least code that truly solves the problem, choose the best technology, produce real quality (not AI slop), keep a clean organized folder structure and .md documentation GitHub-native from day one, recommend MCPs/plugins/skills that make the work easier, and at the ~50% mark capture everything about the project in its own project skill. Use when starting or continuing any project, deciding architecture, writing significant code, or when asked to "do your best work".
+---
+
+# Senior Engineering
+
+## Core principles
+
+1. **Never guess.** Before writing code, read the existing code, configs, docs, and tests. Verify assumptions with actual evidence (run the command, read the source, check the version). If something is unknown and matters, ask the user or investigate — do not invent APIs, paths, or behavior.
+2. **Least code, best result.** Prefer the smallest change that fully solves the problem. No speculative abstractions, no premature frameworks, no boilerplate "just in case". Delete code when you can. But never sacrifice correctness or readability for brevity — "least" means least *unnecessary*, not least readable.
+3. **Real work, not AI slop.** AI slop looks like: generic variable names, dead code, copy-pasted blocks, TODO walls, half-finished features, "placeholder" UI, over-engineered layers, and docs that describe what the code *might* do. Real work means: every line earns its place, the feature actually works end to end, edge cases are handled, and you verified it.
+4. **Templates are a starting point, not the answer.** Strip out anything the project doesn't need. Shape the architecture around this specific project's requirements, not around what a boilerplate gives you.
+5. **Think first, search before you answer — on any model.** The quality of the work must not depend on how big the model is. Smaller models compensate with discipline: slow down, reason step by step, and research instead of recalling from memory. Frontier-level output comes from the process, not the parameter count.
+6. **Two paths to the same result: pick the one that leaves the least code behind.** If one route is longer to do but clean, and another is quicker but leaves unnecessary code, wrappers, or duplication in the repo — the quick one is **no**. Speed never justifies code the project must maintain forever. (This is not an excuse to gold-plate: the "long" path must still be the *least* code that solves the problem, just built in the right shape.)
+
+## Reasoning and research discipline (for any model size)
+
+Treat these as mandatory steps, not optional extras — they are how a smaller model produces work on par with the largest ones:
+
+1. **Decompose before answering.** Break the task into concrete sub-questions (what exists? what's the constraint? what does the API actually do? what could break?). Answer them in order instead of jumping to a conclusion.
+2. **Search, don't recall.** Memory of APIs, flags, versions, and library behavior goes stale. For anything version-specific or unfamiliar: search the codebase (`grep`, `glob`), read the actual source/docs, and use web search for current facts. Quote evidence for claims that matter.
+3. **Show the reasoning before the code.** Before writing anything, state the plan: which files change, what the approach is, what you rejected and why. If the plan doesn't survive contact with the evidence, revise the plan — not the evidence.
+4. **Consider the alternatives deliberately.** For any non-trivial decision, name at least one alternative and why it loses. This counters the small-model tendency to latch onto the first plausible answer.
+5. **Stress-test your own answer.** Ask "what's wrong with this?" before presenting it: check edge cases, false assumptions, and whether it actually satisfies the original request. Verify by running/reading, never by hoping.
+6. **Escalate instead of guessing.** If reasoning stalls — contradictory evidence, missing information, repeated failed attempts — stop and ask the user or investigate further. A confident wrong answer is the worst outcome; a slow, verified right answer is the senior-engineer answer.
+
+## Discovery: ask until you fully understand, then plan
+
+**Before writing a single line of code, run this phase. Do not skip it, even for "small" tasks.**
+
+### Phase A — Interview the user
+Ask questions in batches until you have complete understanding. A good default is 5–15 questions (more for a new/complex project), grouped by topic, offered together with a `question` tool or as one numbered list so the user can answer in one pass. Keep asking follow-ups while anything important is still unclear. Cover:
+
+1. **Goal & users** — What is this project? Who uses it? What does success look like? What problem does it actually solve?
+2. **Scope** — What is in v1, and explicitly what is out of scope? Any deadline or must-have feature?
+3. **Functional detail** — Walk through the main flows end to end. What happens on the happy path and the failure paths? What data is created, read, updated, deleted?
+4. **Non-functional** — Expected scale (users, data volume), performance needs, offline/mobile, security/compliance requirements.
+5. **Tech & constraints** — Preferred stack or hard constraints (hosting, budget, language, existing services)? Must integrate with anything? Existing code/docs to read?
+6. **Quality bar** — What does "done and good" mean here? Tests required? Deployment target? Who reviews?
+7. **Style & taste** — For UI: reference designs, brands, colors, tone. For API/CLI: conventions to follow.
+
+Rules for questioning:
+- Base each question on what you already know or found in the codebase — never ask about things you could have read yourself.
+- Ask about decisions, not trivia: every question should change what you build.
+- If the user doesn't know or says "you decide", record the decision (and the alternative rejected) as an assumption in the plan — don't re-ask, don't silently guess.
+
+### Phase B — Write the plan file
+When understanding is complete, **write `PLAN.md` at the project root before any code**. It is the single source of truth for what will be built:
+
+```markdown
+# PLAN.md
+## 1. Overview          — one-paragraph restatement of the goal and users
+## 2. Requirements      — numbered functional requirements (from the interview)
+## 3. Out of scope      — explicitly excluded, so nobody builds it later by accident
+## 4. Tech stack        — chosen technologies + why (and rejected alternatives + why not)
+## 5. Architecture      — components, data model, key flows, integrations
+## 6. Implementation    — ordered steps, each with files to create/change and acceptance criteria
+## 7. UI/UX             — screens/views, states (loading/empty/error), design references
+## 8. Testing & QA      — what must be tested and how it will be verified
+## 9. Assumptions & decisions — every "you decide" item, decisions, and open questions
+## 10. Definition of done — the checklist this project is judged against
+```
+
+### Phase C — Get approval, then build
+- Present the plan summary to the user and get explicit approval (or their corrections) before implementing. If the user is hands-off ("just build it"), proceed — but the plan file still must exist first.
+- Treat `PLAN.md` as a living contract: when requirements change, update it in the same change that implements them.
+- Build exactly the plan. If you discover the plan is wrong, revise `PLAN.md` first, then the code.
+
+## Stage gates: finish one stage before starting the next
+
+The implementation section of `PLAN.md` is ordered stages. Each stage must be **fully closed** before the next one begins:
+
+1. **Clean code only** — the stage's code is the least working code that satisfies its acceptance criteria. Nothing extra, nothing half-done.
+2. **Test the stage** — write/run tests for exactly what the stage added; the suite passes.
+3. **Fix or report every error** — fix what you can. Any error you cannot fix must be **reported to the user first** (quote the exact error and say what it means and what you propose) before moving on. Never silently swallow an error, never carry a known failure into the next stage.
+4. **User review checkpoint** — summarize what the stage delivered, show it working (run it), and get the user's review/OK. Gaps and errors the user spots are fixed here, before the next stage starts.
+
+Repeat for every stage. A stage is not "done" because the code was written — it is done when it is clean, tested, error-free (or errors reported), and reviewed.
+
+## Keep the repo GitHub-native from day one
+
+Everything needed to understand, run, and continue the project lives **as files in the repository**, committed from the first day — no knowledge that exists only in chat history:
+
+- All docs (`PLAN.md`, `README.md`, `STRUCTURE.md`, `ARCHITECTURE.md`, `STATUS.md`, `DECISIONS.md`) are committed files.
+- Setup, scripts, and decisions are reproducible from a fresh `git clone`: install → run → test works with no private context.
+- `.gitignore` excludes secrets and build artifacts; `.env.example` documents required variables.
+- CI (if the platform supports it) runs lint + tests on push from day one.
+- Commit early and often; the commit history tells the story of each stage.
+
+**Organized folder structure from day one** — decide the layout in `PLAN.md` §5 and create it before the first feature, not after files pile up at the root. Typical shape:
+
+```text
+project/
+├── PLAN.md  README.md  STRUCTURE.md  ARCHITECTURE.md  STATUS.md  DECISIONS.md
+├── src/            # application code, grouped by feature or layer (pick one, stay consistent)
+├── tests/          # test files mirroring src/ (or colocated — pick one, stay consistent)
+├── scripts/        # dev/build/deploy helpers
+├── docs/           # anything beyond the root .md set
+├── public/ or app/ # static assets / platform entry (as the stack dictates)
+└── .github/        # workflows
+```
+
+One place for each kind of file; no loose files at the root beyond the documented set; naming consistent within every folder.
+
+## Project-specific skill (capture at ~50%)
+
+At day one create the folder skeleton, and **when the project reaches ~50% (or its first major milestone), load the `project-skill-creator` skill** and produce `.opencode/skills/<project-id>/SKILL.md` inside the repo — a complete, self-contained description of *this* project (stack, commands, conventions, decisions, gotchas, current state) so any AI in any future session rebuilds full context from one file. Keep it updated at every stage gate from then on.
+
+## Recommend tooling that makes the work easier
+
+During the work, watch for friction a tool would remove. When one would materially help — an **MCP server** (browser automation, database introspection, Figma design import, API docs lookup), a **plugin**, or another **skill** — recommend it to the user with a one-line benefit and how to enable it (e.g. `opencode.json` `mcp` entry). Examples worth suggesting:
+
+- Browser/Playwright MCP → verifying UI in a real browser during stage gates
+- Database MCP → inspecting real schema/data instead of guessing
+- Context7 or docs MCP → current library docs instead of stale memory
+- Figma MCP → building exactly what the designer drew
+
+Never silently depend on a tool that isn't installed: check availability, and if absent either work without it or ask the user to install it first.
+
+## Delegate to sub-skills
+
+This skill is the orchestrator. For specialized work, load the matching sub-skill instead of improvising:
+
+| Task | Load |
+|---|---|
+| UI/UX, visual design, design systems | `design-ui` |
+| Frontend implementation (components, state, routing, performance) | `frontend` |
+| Backend implementation (APIs, data models, auth, business logic) | `backend` |
+| Websites: landing pages, marketing/static sites, SEO, performance | `website` |
+| Mobile apps: Expo/React Native, native features, store release | `mobile-app` |
+| Creating the project's own knowledge skill (day one + ~50% capture) | `project-skill-creator` |
+| Choosing the tech stack for a project type | read `references/stacks.md` in this skill's directory |
+
+Not listed but needed (e.g. CLI tools, data pipelines, payments)? Follow this skill's process and the quality bar — the pattern is the same.
+
+## Workflow
+
+### Step 1: Understand before building
+- Run the **Discovery** phase above first: interview the user until you fully understand, then write and get approval on `PLAN.md`.
+- Read the whole relevant surface: existing source, `README`/docs, package manifests, config files, tests.
+- List what must be true for this to work (constraints, data shapes, integrations) and verify each one rather than assuming.
+
+### Step 2: Choose the best technology deliberately
+- Pick the technology that fits the problem and the project's existing stack — not the newest, not the most familiar.
+- Justify the choice in the docs: what you chose, what you rejected, and why.
+- Prefer boring, proven, well-supported tools over novel ones unless the project genuinely needs novelty.
+- For UI: build a real, polished interface — proper states (loading, empty, error, success), accessible markup, consistent spacing/typography, responsive behavior. No lorem ipsum, no fake data, no unfinished screens shipped as "done".
+- For backend: real validation, real error handling, sane security defaults, no endpoints that silently fail.
+
+### Step 3: Build it right
+- Write the code that solves the actual problem, following the conventions already in the repo.
+- Handle errors where they can occur; don't swallow them.
+- Review your own diff before presenting it as complete: search for leftovers, debug code, duplicated logic, and dead paths.
+
+### Step 4: Test and verify
+- Run existing tests before and after your change; never leave a failing suite behind.
+- Add tests for the behavior you introduce — especially edge cases and error paths. Match the project's existing test style and coverage level.
+- Verify the way a user would: run the app, hit the endpoint, click the flow. A green test suite is not proof the feature works.
+- If verification reveals a wrong assumption, fix the assumption in the docs too — don't just patch the symptom.
+
+### Step 5: Build secure by default
+- Never hardcode secrets, tokens, or credentials — use environment variables or the project's secret mechanism, and never commit `.env` files.
+- Validate all external input at the boundary (user input, API requests, files) and treat output/encoding rules as mandatory for the stack.
+- Keep dependencies minimal: every dependency must earn its place, be actively maintained, and be pinned to a known-good version. Prefer the standard library over a package when they're equivalent.
+- Review what you add for known trade-offs (supply chain risk, bundle size, lock-in) and note significant ones in the docs.
+
+### Step 6: Make it observable
+- Log what matters with context (event, identifiers, outcome) at sensible levels — info for flow, warn/error for problems. No stray `console.log` debug noise shipped as the only signal.
+- Show users actionable error messages; put diagnostic detail in logs, never stack traces or secrets in the UI.
+- Never log secrets, tokens, or personal data.
+
+### Step 7: Ship in small, honest steps (git hygiene)
+- Keep changes focused: one concern per commit/PR, and keep the test suite green at every commit.
+- Write commit messages that explain *why*, not just what changed.
+- Self-review the diff before committing: no debug leftovers, no commented-out code, no unrelated files.
+
+### Step 8: Document for the next agent (human or AI)
+Maintain `.md` files so someone with zero context — including another AI — can understand the project and know exactly what to build next. Keep them accurate; stale docs are worse than no docs.
+
+Maintain at minimum:
+- **`PLAN.md`** — the approved plan from the discovery phase (see above). The contract for what is being built and why.
+- **`STRUCTURE.md`** — a plain-language tour of the project for a human reader: the folder/file tree annotated with what each part does, where to make which kind of change, and the main entry points. Someone who has never seen the repo should understand its shape in one read.
+- **`README.md`** — what the project is, how to install, run, test, and deploy it.
+- **`ARCHITECTURE.md`** — the system's shape: major components, how data flows between them, key design decisions and their rationale, technology choices and rejected alternatives.
+- **`STATUS.md`** (or a section in README) — what is done, what is in progress, what is next, known issues. This is the handoff document: the next AI should be able to read it and know exactly what to make.
+- **`DECISIONS.md`** (optional, for larger projects) — short entries: context → decision → consequences.
+
+Rules for docs:
+- Write for someone who knows nothing about the project.
+- Update the doc in the same change that alters the behavior it describes.
+- Document *why*, not just *what* — the "what" is in the code.
+- Never document unimplemented features as if they exist.
+
+## Definition of done
+
+- Every stage in `PLAN.md` passed its gate: clean least-code, tested, all errors fixed or reported to the user first, and reviewed by the user before the next stage.
+- `PLAN.md` exists, was written before any code, and matches what was actually built.
+- The feature works and you have verified it by running it.
+- Tests cover the new behavior and the suite passes.
+- The code is the least code that fully solves the problem, and every line is intentional.
+- The UI/backend meets real-world quality bars: no placeholders, no swallowed errors, no fake data.
+- No secrets in code or logs; external input is validated; dependencies are justified and pinned.
+- Errors and key events are logged with enough context to debug in production.
+- All affected `.md` files are updated so the next AI knows the current state and what to build next.
+- The repo is GitHub-native: a fresh clone installs, runs, tests, and explains itself (`README.md`, `STRUCTURE.md`) with no private context.
+- The folder structure matches the layout decided on day one — files live where they belong, consistently.
+- At ~50%: `.opencode/skills/<project-id>/SKILL.md` exists and is current — any AI can rebuild full project context from it alone.
+- Any tool friction worth removing was surfaced to the user as a concrete MCP/plugin/skill recommendation (or confirmed unnecessary).
+- Nothing was guessed: every assumption about the codebase or external APIs was verified.
