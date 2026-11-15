@@ -23,40 +23,13 @@ The general skills (`build-anything`, `frontend`, …) teach *how* to work. This
 
 ## What it must contain
 
-```markdown
----
-name: <project-id>
-description: Everything about <project> — <one-line what it is>. Load when working on this repo.
----
+**Copy [`templates/PROJECT-SKILL.md`](templates/PROJECT-SKILL.md) from this skill's folder** to `.opencode/skills/<project-id>/SKILL.md`, then fill every `<angle-bracket placeholder>`. The template is fill-in-the-blank:
 
-# <project> — project skill
+- The file ships with all nine sections and the fill-in rules in an HTML comment at the top — a finished file has **zero `<...>` placeholders left**.
+- **Never delete a section you don't understand** — write `TBD — <when it will be known>` instead (day-one skeleton: most sections get a one-line TBD or "just started" note).
+- Only verified facts go in: commands you actually ran, features that actually work.
 
-## What this project is
-One paragraph: the goal, the users, what "done" means. Pointer to PLAN.md.
-
-## Stack & versions
-Languages, framework, DB, key libs — with versions and *why each was chosen*.
-
-## Repo map
-The folder tree annotated in one line per folder. Pointer to STRUCTURE.md for the full tour.
-
-## Commands
-install / run dev / test / lint / build / migrate / deploy — exact commands, copy-pasteable.
-
-## Conventions
-Naming, file layout, error style, logging style, commit style, branch flow — whatever this
-repo actually does, stated as rules.
-
-## Key decisions & rejected alternatives
-Short list: decision → why. Pointer to DECISIONS.md for the full log.
-
-## Gotchas & hard-won knowledge
-The non-obvious stuff: flaky test and its workaround, the API quirk that cost a day,
-the env var nobody remembers, "never do X here because Y".
-
-## Current state & next actions
-What's built, what's in progress, what's next. Pointer to STATUS.md for detail.
-```
+Sections: *What this project is* · *Stack & versions* · *Repo map* · *Commands* · *Conventions* · *Key decisions & rejected alternatives* · *Gotchas & hard-won knowledge* · *Current state & next actions*.
 
 ## Rules
 

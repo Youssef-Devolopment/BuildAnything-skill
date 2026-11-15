@@ -38,7 +38,7 @@ One place for each kind of file; no loose files at the root beyond the documente
 
 ## Project-specific skill (capture at ~50%)
 
-At day one create the folder skeleton, and **when the project reaches ~50% (or its first major milestone), load the `project-skill-creator` skill** and produce `.opencode/skills/<project-id>/SKILL.md` inside the repo — a complete, self-contained description of *this* project (stack, commands, conventions, decisions, gotchas, current state) so any AI in any future session rebuilds full context from one file. Keep it updated at every stage gate from then on.
+At day one create the folder skeleton, and **when the project reaches ~50% (or its first major milestone), load the `project-skill-creator` skill** and produce `.opencode/skills/<project-id>/SKILL.md` inside the repo — a complete, self-contained description of *this* project (stack, commands, conventions, decisions, gotchas, current state) so any AI in any future session rebuilds full context from one file. It ships a copy-fill template (`project-skill-creator/templates/PROJECT-SKILL.md`) — fill every placeholder, never delete a section. Keep it updated at every stage gate from then on.
 
 ## Recommend tooling that makes the work easier
 

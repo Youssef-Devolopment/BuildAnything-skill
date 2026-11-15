@@ -1,11 +1,6 @@
----
-name: Clone App
-description: Use when cloning an existing app (mobile, desktop, or web) — record flows, map screens and navigation, reverse-engineer the data model, core loop first, same-flow side-by-side walks.
----
+# Clone App (method)
 
-# Clone App
-
-Rebuilding an app the user points at. Load `clone-anything` for the contract (legal line, v1 core-loop cut, beat-the-original bar) and `build-anything` for the pipeline — this skill is the app-specific method.
+Rebuilding an app the user points at. The parent skill (`clone-anything`) sets the contract (legal line, v1 core-loop cut, beat-the-original bar) and `build-anything` provides the pipeline — this file is the app-specific capture and build method.
 
 ## Capture (before any plan)
 

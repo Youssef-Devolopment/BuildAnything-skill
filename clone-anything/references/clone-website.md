@@ -1,11 +1,6 @@
----
-name: Clone Website
-description: Use when cloning a specific website from a URL — 4-breakpoint capture, section/copy/asset inventory, rebuild top-to-bottom with original content, side-by-side verify, Lighthouse >=95 intact.
----
+# Clone Website (method)
 
-# Clone Website
-
-Rebuilding a specific site with a URL in hand. Load `clone-anything` for the contract (legal line, v1 cut, beat-the-original bar) and `build-anything` for the pipeline — this skill is the website-specific method.
+Rebuilding a specific site with a URL in hand. The parent skill (`clone-anything`) sets the contract (legal line, v1 cut, beat-the-original bar) and `build-anything` provides the pipeline — this file is the website-specific capture and build method.
 
 ## Capture (before any plan)
 

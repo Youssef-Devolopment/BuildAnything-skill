@@ -82,7 +82,7 @@ Rules:
 5. **`readiness-judge`** — evidence-based READY / READY WITH FIXES / NOT READY
 6. **`open-or-private`** — structure for the choice; if open source, `open-source-showcase` adds logo, README, site
 
-Skip nothing without saying why. Non-developers: `idea-to-product` wraps all six. "Clone X": `clone-anything` (websites → `clone-website`, apps → `clone-app`).
+Skip nothing without saying why. Non-developers: `idea-to-product` wraps all six. "Clone X": `clone-anything` (websites and apps have methods in `references/`).
 
 ## Delegate to sub-skills
 
@@ -97,7 +97,7 @@ For specialized work, load the matching sub-skill instead of improvising:
 | Is the project actually ready? — independent evidence-based verdict | `readiness-judge` |
 | Open-source or private? — ask, then structure the repo for that choice | `open-or-private` |
 | Open source: logo, 30-second README, project website (GitHub Pages) | `open-source-showcase` |
-| Rebuild an existing product ("clone X") — any kind | `clone-anything` (websites → `clone-website`, apps → `clone-app`) |
+| Rebuild an existing product ("clone X") — any kind | `clone-anything` (websites → `references/clone-website.md`, apps → `references/clone-app.md`) |
 | UI/UX, visual design, design systems | `design-ui` |
 | Frontend implementation (components, state, routing, performance) | `frontend` |
 | Backend implementation (APIs, data models, auth, business logic) | `backend` |

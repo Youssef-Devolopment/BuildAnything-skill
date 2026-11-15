@@ -7,6 +7,14 @@ description: Use when the user says clone, rebuild, or copy an existing product 
 
 The user points at an existing product ("clone Netflix", "make a copy of Notion", "rebuild this URL") and you build a working equivalent. Load `build-anything` first — the pipeline (discovery → `PLAN.md` → `TODO.md` → stage gates) is unchanged; this skill defines *what a clone is* and how one enters that pipeline.
 
+## Specialized methods (load on demand)
+
+| Product type | Read |
+|---|---|
+| Websites, landing pages, URLs | `references/clone-website.md` (4-breakpoint capture, section-by-section build, Lighthouse ≥95) |
+| Mobile, desktop, or web apps | `references/clone-app.md` (flow recording, data model reverse-engineering, same-flow walks) |
+| Games, CLI tools, other | Follow this skill's contract, load matching layer skill (`frontend`, `backend`, `mobile-app`) |
+
 ## The clone contract
 
 - **Clone behavior and structure, never identity.** Functionality, flows, layout patterns, and interaction ideas are fair game. Logos, trademarks, brand names, copyrighted assets, and copied text are not: use original branding and write your own copy (flag placeholders until the user supplies real content). State this constraint in `PLAN.md` — one line.
@@ -19,7 +27,10 @@ The user points at an existing product ("clone Netflix", "make a copy of Notion"
 2. **Inventory** — produce two lists, which go into `PLAN.md`:
    - **Feature inventory**: every feature/flow observed, each tagged `v1` / `later` / `skip`.
    - **Screen/flow map**: every screen/section and how navigation moves between them.
-3. **Dispatch** — websites/marketing pages → `clone-website`; mobile/desktop/web apps → `clone-app`; games, CLI tools, and everything else → keep this contract and load the matching layer skill (`frontend`, `backend`, `mobile-app`).
+3. **Dispatch** — read the matching method:
+   - Websites / marketing pages → `references/clone-website.md`
+   - Mobile / desktop / web apps → `references/clone-app.md`
+   - Games, CLI tools, and everything else → keep this contract and load the matching layer skill (`frontend`, `backend`, `mobile-app`).
 4. **Plan against the inventory** — `PLAN.md` §6 stages each own one screen/flow (or one layer of it). The inventory *is* the requirements section; the `later`/`skip` tags *are* §3 out-of-scope.
 5. **Build under stage gates** — one flow per stage: tested, demoed, reviewed — unchanged `build-anything` gates.
 6. **Verify side-by-side at every gate** — run your clone next to the reference and walk the same flow in both: same steps reachable? same information visible? same states (loading/empty/error/success) present? Record differences as fixes, not surprises.

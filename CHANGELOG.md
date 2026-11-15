@@ -2,6 +2,19 @@
 
 All notable changes to the **BuildAnything skill set** — newest first, append-only. This file is the human-readable summary; the commit history is the full record. Releases are tagged (`v1.0`, `v1.1`, …) to match the entries below.
 
+## [v1.11] — 2026-11-15
+
+### Added
+- **`project-skill-creator/templates/PROJECT-SKILL.md`** — a copy-fill skeleton for the project's own in-repo skill: all nine sections pre-built with `<placeholders>`, fill-in rules in a header comment (replace every placeholder, keep every section and write `TBD — <when>` instead of deleting, only verified facts). The AI copies the file and fills it instead of writing the project skill from scratch.
+- **`clone-anything/references/clone-website.md` and `clone-app.md`** — the website and app cloning methods moved as load-on-demand references inside `clone-anything`.
+
+### Changed
+- **Merged the three clone skills into one** (`clone-anything` with `references/clone-website.md` and `references/clone-app.md`) — deleted the separate `clone-website/` and `clone-app/` directories. Total skills: **21 → 19**. Cross-references in `build-anything/SKILL.md`, README skills table, layout tree, and trigger examples updated.
+- **`project-skill-creator/SKILL.md`** — inline template block replaced by a pointer to `templates/PROJECT-SKILL.md` (68 → 41 lines): copy → fill → never delete a section you don't understand.
+
+### Not done (deliberate)
+- **Other proposed skill merges** (`readiness-judge` + `recommendations`, demoting `open-source-showcase` into `open-or-private`) remain **not done** — only the clone skills were merged; all other 18 skills stay separate.
+
 ## [v1.10] — 2026-11-15
 
 ### Added

@@ -10,9 +10,7 @@ The universal build skill set — one system that makes **any AI, with any model
 | **Idea Refiner** | `idea-refiner` | Raw prompt/vague idea → polished, AI-understandable `IDEA.md` in 1–3 passes. |
 | **Micro Planner** | `micro-planner` | `IDEA.md` → `PLAN.md` of many small, individually verifiable stages — never batch plans. |
 | **Idea To Product** | `idea-to-product` | For the user who has *only an idea* — developer or not. Plain-language interview, tech decisions made for them, a readable plan, and a build that beats what they imagined. |
-| **Clone Anything** | `clone-anything` | Rebuild an existing product: capture the reference, feature inventory, v1 core loop only, original branding/assets, side-by-side verification, beat-the-original bar. |
-| **Clone Website** | `clone-website` | Site cloning method: capture at 4 breakpoints, section/copy/asset inventory, rebuild section by section, verify in a real browser, Lighthouse ≥95 intact. |
-| **Clone App** | `clone-app` | App cloning method: record flows, screen/navigation map, reverse-engineered data model, core loop first, same-flow side-by-side walks at every gate. |
+| **Clone Anything** | `clone-anything` | Rebuild an existing product: contract (clone behavior never identity, v1 core loop, beat-the-original bar) with specialized methods in `references/` for websites and apps. |
 | **Design UI** | `design-ui` | Design systems, layout, typography, color, every-state design, WCAG AA accessibility. |
 | **Frontend** | `frontend` | Components, state hierarchy, data fetching, performance, a11y, testing. |
 | **Backend** | `backend` | API design, schema-first data, deny-by-default security, observability, integration tests. |
@@ -22,7 +20,7 @@ The universal build skill set — one system that makes **any AI, with any model
 | **Testing** | `testing` | Test strategy per layer, test quality bar, killing flaky tests. |
 | **Deployment** | `deployment` | CI/CD, environments, hosting choices, releases, rollback, go-live checklist. |
 | **AI Features** | `ai-features` | LLM integration, prompts as code, RAG, evals, cost/latency, guardrails. |
-| **Project Skill Creator** | `project-skill-creator` | Builds the project's own in-repo SKILL.md (day one skeleton + ~50% full capture). |
+| **Project Skill Creator** | `project-skill-creator` | Builds the project's own in-repo SKILL.md from a fill-in template (`templates/PROJECT-SKILL.md`) — day one skeleton + ~50% full capture. |
 | **Recommendations** | `recommendations` | After the build: prioritized list of missing features/ideas with evidence — nothing built until approved. |
 | **Readiness Judge** | `readiness-judge` | Independent evidence-based verdict: READY / READY WITH FIXES / NOT READY. |
 | **Open Or Private** | `open-or-private` | Asks open-source vs. private, then structures the repo for that choice (license+community files vs. owner-runnable structure). |
@@ -34,7 +32,7 @@ Reference: [`build-anything/references/stacks.md`](build-anything/references/sta
 
 Repo: **https://github.com/Youssef-Devolopment/BuildAnything-skill** (public — clone, download, or copy freely)
 
-Pick **one** method. All of them give you the same 21 skills.
+Pick **one** method. All of them give you the same 19 skills.
 
 > ### ⚠️ Use exactly ONE option — never two
 > Options 1–4 are **alternatives**, not steps. Running two (e.g. cloning into the skills folder *and* registering a path in `opencode.json`) creates **two copies** — OpenCode loads only one of them by precedence, edits to the losing copy look ignored, and updates silently stop applying.
@@ -130,7 +128,7 @@ The doctor is read-only: it only inspects and reports (exit 0 = one install ✓,
 
 ### Using the skills
 
-OpenCode discovers them automatically — load one with `@<skill-id>` (e.g. `@build-anything`) or let the model load it via the `skill` tool. Just describing the job often loads the right one too ("clone this landing page" → `clone-website`). Claude Code picks up `-Target claude` installs the same way.
+OpenCode discovers them automatically — load one with `@<skill-id>` (e.g. `@build-anything`) or let the model load it via the `skill` tool. Just describing the job often loads the right one too ("clone this landing page" → `clone-anything`). Claude Code picks up `-Target claude` installs the same way.
 
 ### Quota control (free/limited models)
 
@@ -178,9 +176,9 @@ C:\Buildanything skill\
 ├── idea-refiner/SKILL.md
 ├── micro-planner/SKILL.md
 ├── idea-to-product/SKILL.md
-├── clone-anything/SKILL.md
-├── clone-website/SKILL.md
-├── clone-app/SKILL.md
+├── clone-anything/
+│   ├── SKILL.md
+│   └── references/         # clone-website, clone-app methods
 ├── design-ui/SKILL.md
 ├── frontend/SKILL.md
 ├── backend/SKILL.md
@@ -194,7 +192,9 @@ C:\Buildanything skill\
 ├── readiness-judge/SKILL.md
 ├── open-or-private/SKILL.md
 ├── open-source-showcase/SKILL.md
-├── project-skill-creator/SKILL.md
+├── project-skill-creator/
+│   ├── SKILL.md
+│   └── templates/PROJECT-SKILL.md   # copy-fill skeleton for the project's own skill
 ├── eval/                   # 10-task measurement harness (README, TASKS, RESULTS, fixtures)
 ├── install.ps1             # Windows installer + -Doctor
 ├── update.ps1              # git updater (+ daily auto-update schedule)
