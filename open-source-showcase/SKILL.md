@@ -1,6 +1,8 @@
 ---
 name: Open Source Showcase
 description: Use when an open-source project needs to attract stars — SVG logo, a 30-second README (badges, screenshot, quickstart), and a one-page GitHub Pages website.
+metadata:
+  opencode/autoinvoke: false
 ---
 
 # Open Source Showcase

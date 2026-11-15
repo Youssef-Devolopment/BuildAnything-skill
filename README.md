@@ -37,7 +37,7 @@ Repo: **https://github.com/Youssef-Devolopment/BuildAnything-skill** (public —
 Pick **one** method. All of them give you the same 21 skills.
 
 > ### ⚠️ Use exactly ONE option — never two
-> Options 1–4 are **alternatives**, not steps. Running two (e.g. cloning into the skills folder *and* registering a path in `opencode.json`) creates **two copies** — the stale one can win, updates silently stop applying, and skills may flicker or disappear.
+> Options 1–4 are **alternatives**, not steps. Running two (e.g. cloning into the skills folder *and* registering a path in `opencode.json`) creates **two copies** — OpenCode loads only one of them by precedence, edits to the losing copy look ignored, and updates silently stop applying.
 >
 > Already ran more than one? Run **`.\install.ps1 -Doctor`** — it detects every copy, prints them, and gives the exact fix.
 
@@ -122,7 +122,7 @@ Both config levels work and **merge**: OpenCode combines the `skills` arrays fro
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| Skills missing / flickering / updates not applying | Two copies installed, the stale one wins | Run `.\install.ps1 -Doctor` → it lists every copy and the exact cleanup → restart OpenCode |
+| Skills missing / flickering / updates not applying | Two copies installed — OpenCode loads only **one**, by precedence (config entries > project `.opencode/skills` > `~/.config/opencode/skills` > `.agents/skills` > `.claude/skills`), so edits to the losing copy look ignored | Run `.\install.ps1 -Doctor` → it lists every copy, **which one loads**, and the exact cleanup → restart OpenCode |
 | `.\install.ps1 -Doctor` says **NOT INSTALLED** | Skills exist only in a folder no agent scans | Run `.\install.ps1 -Target opencode` (or do Option 1) — pick ONE |
 | Not sure what you did before | — | `.\install.ps1 -Doctor` is always safe to run; it changes nothing |
 
@@ -132,13 +132,48 @@ The doctor is read-only: it only inspects and reports (exit 0 = one install ✓,
 
 OpenCode discovers them automatically — load one with `@<skill-id>` (e.g. `@build-anything`) or let the model load it via the `skill` tool. Just describing the job often loads the right one too ("clone this landing page" → `clone-website`). Claude Code picks up `-Target claude` installs the same way.
 
+### Quota control (free/limited models)
+
+Two OpenCode config levers control how much context and how many requests the skills consume. Both are verified against the [skills docs](https://opencode.ai/docs/skills/) and [permissions docs](https://opencode.ai/docs/permissions/).
+
+**1. Hide never-auto-invoked skills from the advertised list.** Descriptions are injected at every model step; hiding a skill cuts its always-on context cost while keeping it loadable by explicit ID. Already set on `open-source-showcase`:
+
+```yaml
+# in the skill's SKILL.md frontmatter
+metadata:
+  opencode/autoinvoke: false
+```
+
+**2. Ask before loading the heavy orchestrator** — one `permissions` rule in `~/.config/opencode/opencode.jsonc`:
+
+```jsonc
+{
+  "permissions": [
+    { "action": "skill", "resource": "build-anything", "effect": "ask" }
+  ]
+}
+```
+
+The model must get your yes before spending a session's budget on the full pipeline. (Last matching rule wins; see the permissions doc for `allow`/`deny`/`ask` and wildcards.)
+
+### Eval
+
+[`eval/`](eval/README.md) is this repo's own measurement harness — 10 fixed tasks with pass criteria, scored by running commands (never by self-grading). Run it against any model to compare pass rate, turn count, and honesty:
+
+| File | What it is |
+|---|---|
+| [`eval/README.md`](eval/README.md) | Protocol: fresh session per task, how to score |
+| [`eval/TASKS.md`](eval/TASKS.md) | The 10 task prompts + pass criteria |
+| [`eval/RESULTS.md`](eval/RESULTS.md) | Scoreboard — one row per model run |
+| `eval/fixtures/` | Small Python projects with known red/green states to run the tasks against |
+
 ## Layout
 
 ```
 C:\Buildanything skill\
 ├── build-anything/
 │   ├── SKILL.md            # slim entry point: tier table, principles, gates, routing
-│   ├── references/         # stacks, recovery-loop, pre-flight, discovery, repo-and-docs, workflow — loaded on demand
+│   ├── references/         # core-protocol, stacks, recovery-loop, pre-flight, discovery, repo-and-docs, workflow — loaded on demand
 │   └── templates/          # TEMPLATE.md + PLAN/TODO/STATUS/README/ARCHITECTURE/STRUCTURE/CHANGELOG/CHECKLIST skeletons, .env.example, .gitignore, CI workflow
 ├── idea-refiner/SKILL.md
 ├── micro-planner/SKILL.md
@@ -160,8 +195,10 @@ C:\Buildanything skill\
 ├── open-or-private/SKILL.md
 ├── open-source-showcase/SKILL.md
 ├── project-skill-creator/SKILL.md
-├── install.ps1
-├── update.ps1
+├── eval/                   # 10-task measurement harness (README, TASKS, RESULTS, fixtures)
+├── install.ps1             # Windows installer + -Doctor
+├── update.ps1              # git updater (+ daily auto-update schedule)
+├── CHANGELOG.md            # release history, newest first
 └── README.md
 ```
 

@@ -39,7 +39,8 @@ A 20-stage product and a one-file script share this pipeline; only the number of
 **Before writing a single line of code, run this phase. Do not skip it, even for "small" tasks.** (Phase 0 auto-detection above runs first — for resumed projects, much of this phase is answered by the docs already on disk.)
 
 ### Phase A — Interview the user
-Ask questions in batches until you have complete understanding. A good default is 5–15 questions (more for a new/complex project), grouped by topic, offered together with a `question` tool or as one numbered list so the user can answer in one pass. Keep asking follow-ups while anything important is still unclear. Cover:
+
+**One batch, then plan — never a questionnaire marathon.** Ask a *single* batch of **max 5 questions** (max 7 only for the Full tier on a genuinely complex new project), grouped by topic, as one numbered list or a single `question` tool call so the user answers in one pass. Every question carries your best-guess answer ("My guess: X — correct?") so confirming is one click. **Then write `PLAN.md`.** Anything still unknown goes into §9 Assumptions by default — no second round of questions unless the user volunteers new information or something is genuinely unsafe to guess (legal, money, data destruction). Cover:
 
 **Adapt to who the user is.** This skill is for anyone with an idea — developer or not. Detect their level and match it: if they're a non-developer, ask about the *product* (who uses it, what it does, what it looks like) in plain language — no jargon, no stack questions — and own the technical decisions yourself, stating them in one plain sentence each ("I'll use X so it's free to host and fast"). If they're a developer, they can be part of the technical choices. Either way the outcome is the same: a complete `PLAN.md` the user can actually read.
 
@@ -55,7 +56,7 @@ Ask questions in batches until you have complete understanding. A good default i
 Rules for questioning:
 - Base each question on what you already know or found in the codebase — never ask about things you could have read yourself.
 - Ask about decisions, not trivia: every question should change what you build.
-- If the user doesn't know or says "you decide", record the decision (and the alternative rejected) as an assumption in the plan — don't re-ask, don't silently guess.
+- If the user doesn't know, says "you decide", or didn't answer a question: record the decision (and the alternative rejected) as an assumption in `PLAN.md` §9 — don't re-ask, don't silently guess.
 
 ### Phase B — Write the plan file
 When understanding is complete, **write `PLAN.md` at the project root before any code**. It is the single source of truth for what will be built:

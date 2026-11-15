@@ -2,6 +2,18 @@
 
 All notable changes to the **BuildAnything skill set** — newest first, append-only. This file is the human-readable summary; the commit history is the full record. Releases are tagged (`v1.0`, `v1.1`, …) to match the entries below.
 
+## [v1.10] — 2026-11-15
+
+### Added
+- **`references/core-protocol.md`** — the whole plan → gate → verify → document loop in one file for weak/free models, quota limits, or minimum ceremony (max-5-question interview, batched reviews, banned-thrash list). Linked from the entry point's load-on-demand map.
+- **Interview cap** (`references/discovery.md`) — one batch of **max 5 questions** (max 7 for genuinely complex Full-tier projects), each with a best-guess answer; everything unanswered goes to `PLAN.md` §9 Assumptions by default. No second round unless the user volunteers it or the unknown is unsafe to guess (legal, money, data destruction).
+- **`eval/` harness** — 10 fixed tasks (`TASKS.md`) with advance-written pass criteria, protocol (`README.md`: fresh session per task, score from artifacts by re-running commands, never self-grading), scoreboard (`RESULTS.md`), and 5 Python fixtures with pre-verified red/green states: `f1-bug` (RED, exit 1), `f3-resume` (docs-only mid-project), `f4-tricky` (RED — KeyError surfaces in the test, root cause is a typo in `parser.py`), `f7-truth` (RED — docs claim green, tests aren't), `f8-project` (GREEN, exit 0). All states verified with Python 3.12 in this release.
+- **Quota-control section in README** — the two OpenCode levers verified against the live docs: `metadata: opencode/autoinvoke: false` (hide from the advertised list, still loadable by ID — already set on `open-source-showcase`, live-verified hidden) and the `permissions` rule `{ "action": "skill", "resource": "build-anything", "effect": "ask" }` for ask-before-spend on the orchestrator.
+
+### Changed
+- **`install.ps1 -Doctor` precedence honesty** — instead of "the stale one may win", it now prints **which copy OpenCode actually loads** using the verified precedence (config entries > project `.opencode/skills` > `~/.config/opencode/skills` > `.agents/skills` > `.claude/skills`), says "one of N copies at the same precedence level (search order decides)" when a tie can't be resolved, and warns that `-Target claude/agents` installs also feed OpenCode's search path. Verified: clean exit 0, planted-duplicate exit 1 with tie message, cleanup confirmed.
+- **README troubleshooting** — the "stale one wins" row replaced with the real precedence wording; install warning block updated to match.
+
 ## [v1.9] — 2026-11-15
 
 ### Added

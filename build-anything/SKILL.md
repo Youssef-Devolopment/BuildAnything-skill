@@ -11,6 +11,7 @@ The universal build skill: **any AI, any model, any project.** The process produ
 
 | Situation | Read |
 |---|---|
+| Weak/free model, quota limits, or minimum ceremony | `references/core-protocol.md` — the whole loop in one file |
 | A command, build, or test failed | `references/recovery-loop.md` — run the 5-step loop immediately |
 | Before shipping a stage's code / closing a gate | `references/pre-flight.md` — evidence checklist |
 | New project: interview, `PLAN.md`, `TODO.md` protocol, Phase 0 detection | `references/discovery.md` |

@@ -108,7 +108,29 @@ if ($Doctor) {
     }
 
     Write-Host ""
-    Write-Host ("DUPLICATE: {0} copies found - the stale one may win and updates will not apply." -f $loaded.Count) -ForegroundColor Red
+    Write-Host ("DUPLICATE: {0} copies found - OpenCode loads only ONE of them; edits to the losing copy look ignored." -f $loaded.Count) -ForegroundColor Red
+
+    # Which copy actually loads? Verified OpenCode precedence (high to low):
+    # explicit config entries > project .opencode/skills > ~/.config/opencode/skills > .agents/skills > .claude/skills
+    $best = $null; $bestRank = -1; $ties = 0
+    foreach ($l in $loaded) {
+        $r = 1
+        if ($l.Kind -like "config*") { $r = 6 }
+        elseif ($l.Path -like "*\.config\opencode\skills*") { $r = 4 }
+        elseif ($l.Path -like "*\.agents\skills*") { $r = 3 }
+        elseif ($l.Path -like "*\.claude\skills*") { $r = 2 }
+        if ($r -gt $bestRank) { $bestRank = $r; $best = $l; $ties = 1 }
+        elseif ($r -eq $bestRank) { $ties++ }
+    }
+    if ($ties -gt 1) {
+        Write-Host ("Loads:    one of {0} copies at the same precedence level (search order decides)" -f $ties) -ForegroundColor Magenta
+    } else {
+        Write-Host ("Loads:    [{0}] {1}" -f $best.Kind, $best.Path) -ForegroundColor Magenta
+    }
+    Write-Host "Precedence (high to low): config entries > project .opencode/skills >"
+    Write-Host "  ~/.config/opencode/skills > .agents/skills > .claude/skills"
+    Write-Host "Note: OpenCode also discovers ~/.claude/skills and ~/.agents/skills, so"
+    Write-Host "  -Target claude/agents installs feed OpenCode's search path too."
     Write-Host "Fix - keep EXACTLY ONE:"
     Write-Host "  * Keep an auto-discovery/copy: delete the other folder(s) listed above, AND"
     Write-Host "    remove the skills array entry from opencode.json / opencode.jsonc if present."
