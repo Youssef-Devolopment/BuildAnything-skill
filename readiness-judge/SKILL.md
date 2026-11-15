@@ -1,6 +1,6 @@
 ---
 name: Readiness Judge
-description: Judge the finished project like a skeptical, independent reviewer — is it truly ready, or does it still need development? Verifies against PLAN.md with evidence (run tests, exercise flows, audit docs) and issues a verdict: READY / READY WITH FIXES / NOT READY, with a blocking list. Load after recommendations, before any release or open-sourcing.
+description: Use when someone asks "is it ready to release?" — independent evidence-based verdict: READY / READY WITH FIXES / NOT READY with a blocking list.
 ---
 
 # Readiness Judge

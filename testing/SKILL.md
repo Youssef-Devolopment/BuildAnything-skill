@@ -1,6 +1,6 @@
 ---
 name: Testing
-description: Design and implement the full testing strategy — what to test, at which layer, how much, and how to keep the suite fast and trustworthy. Load when adding tests to a project, deciding test strategy, debugging a flaky suite, or when a stage gate needs verification beyond "it runs". Works with build-anything's stage gates.
+description: Use when adding tests, deciding strategy, or fixing a flaky suite — what to test per layer, how much, keeping the suite fast and trustworthy.
 ---
 
 # Testing

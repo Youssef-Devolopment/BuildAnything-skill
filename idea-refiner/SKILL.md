@@ -1,6 +1,6 @@
 ---
 name: Idea Refiner
-description: Turn a raw prompt or vague idea into a perfect, AI-understandable brief — fix ambiguity, add missing detail, quantify the fuzzy parts, iterate 1–3 times until a fresh model could build from it alone. Load first when a user arrives with an idea, prompt, or "build me X" request. Output feeds micro-planner and build-anything.
+description: Use when a raw prompt or vague idea needs to become a precise, AI-understandable IDEA.md — one batch of smart questions with best-guess answers, 1–3 passes until a fresh model could build from it alone.
 ---
 
 # Idea Refiner

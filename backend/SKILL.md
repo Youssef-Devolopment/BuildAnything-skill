@@ -1,6 +1,6 @@
 ---
 name: Backend
-description: Build production-quality backend code — APIs, data models, business logic, auth, validation, security, and testing. Load when implementing any server-side code, database schema, or integration. Follows build-anything's stage gates.
+description: Use when building server-side code — APIs, data models, business logic, auth, validation, security, and integration tests.
 ---
 
 # Backend

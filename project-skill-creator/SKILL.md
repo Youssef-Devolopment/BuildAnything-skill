@@ -1,6 +1,6 @@
 ---
 name: Project Skill Creator
-description: Create the project-specific knowledge skill — a SKILL.md inside the repo that captures everything about this project (stack, structure, conventions, commands, gotchas, state) so any AI can rebuild full context instantly. Load at project day one (skeleton) and at the ~50% mark (full capture), then keep it updated. Used with build-anything.
+description: Use when creating or updating the project's own SKILL.md — day-one skeleton, ~50% full capture, kept current at every stage gate so any AI can rebuild context from one file.
 ---
 
 # Project Skill Creator

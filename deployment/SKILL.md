@@ -1,6 +1,6 @@
 ---
 name: Deployment
-description: Ship and operate the project — CI/CD, environments, hosting, domains, releases, and rollback. Load when deploying, setting up pipelines, choosing hosting, going live, or after the last stage gate when the project must reach users. Works with build-anything's GitHub-native rules.
+description: Use when shipping — CI/CD, environments, hosting, domains, releases, rollback, and the go-live checklist.
 ---
 
 # Deployment

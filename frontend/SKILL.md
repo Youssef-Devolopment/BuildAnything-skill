@@ -1,6 +1,6 @@
 ---
 name: Frontend
-description: Build production-quality frontend code — components, state, routing, data fetching, performance, accessibility, and testing. Load when implementing any client-side code in a web/app project. Follows build-anything's stage gates and the design-ui skill's decisions.
+description: Use when building client-side code — components, state hierarchy, routing, data fetching, performance, accessibility, and UI tests, following design-ui's decisions.
 ---
 
 # Frontend

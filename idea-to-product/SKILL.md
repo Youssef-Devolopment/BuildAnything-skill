@@ -1,6 +1,6 @@
 ---
 name: Idea To Product
-description: Turn a bare idea into a finished product for a user who may not be a developer — plain-language interview, technical decisions made and explained simply, then a readable PLAN.md and a build that beats what they imagined. Load when the user has "just an idea", asks to build something from a description, or is non-technical. Entry point that delegates to build-anything and the layer skills.
+description: Use when the user has only an idea or is non-technical — plain-language interview, technical decisions made and explained simply, readable PLAN.md, then a build that beats what they imagined.
 ---
 
 # Idea To Product

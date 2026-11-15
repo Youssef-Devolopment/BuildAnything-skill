@@ -1,6 +1,6 @@
 ---
 name: Open Source Showcase
-description: Make an open-source project presentable to the world — a excellent README (logo, badges, screenshots, quickstart), a simple project logo, and a one-page website for the repo (GitHub Pages). Load after open-or-private chooses "open source", alongside or after the license/community files. Makes strangers understand and star the project in 30 seconds.
+description: Use when an open-source project needs to attract stars — SVG logo, a 30-second README (badges, screenshot, quickstart), and a one-page GitHub Pages website.
 ---
 
 # Open Source Showcase

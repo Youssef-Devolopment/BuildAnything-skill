@@ -1,6 +1,6 @@
 ---
 name: Open Or Private
-description: Ask the user whether the finished project will be open-sourced or kept private, then structure the repository accordingly — license, community files, and public-ready hygiene for open source; or a self-contained, easy-to-run structure with one-command setup for personal use. Load after readiness-judge says READY, before the final push.
+description: Use when a finished project must go open-source or stay private — asks once, then structures license, community files, or owner-runnable layout accordingly.
 ---
 
 # Open Or Private

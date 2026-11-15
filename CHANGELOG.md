@@ -2,6 +2,17 @@
 
 All notable changes to the **BuildAnything skill set** — newest first, append-only. This file is the human-readable summary; the commit history is the full record. Releases are tagged (`v1.0`, `v1.1`, …) to match the entries below.
 
+## [v1.9] — 2026-11-15
+
+### Added
+- **Progressive disclosure split** — `build-anything/SKILL.md` cut from 383 lines to a slim entry point (tier table, principles, gates, dry-run rule, routing, cold-start). Deep protocols moved to `build-anything/references/` — `recovery-loop.md`, `pre-flight.md`, `discovery.md`, `repo-and-docs.md`, `workflow.md` — opened only when their situation calls for them, via an "If you need it, go here" map at the top of the entry. All cross-pointers fixed; nothing lost except deliberately trimmed wording.
+- **Hard tier table** (Resume / Fix / Feature / Full) with explicit triggers; the model must state its detected state and tier in its first message. Replaces the soft "shrink the process to match" judgment call.
+- **Evidence rule** — no "should work", "looks correct", or "verified" without pasted raw command output (or the screenshot).
+
+### Changed
+- **All 21 skill descriptions rewritten to trigger form** ("Use when…", ~100–170 chars each) — the always-on catalog drops from ~2,500+ chars of manifesto prose to one tight trigger line per skill, so routing costs less context on every model step.
+- **Core principles compressed** to one-line forms in the entry (operative rules kept, examples trimmed); the 8 principles remain all 8.
+
 ## [v1.8] — 2026-11-14
 
 ### Added

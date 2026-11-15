@@ -1,6 +1,6 @@
 ---
 name: Recommendations
-description: After a build, analyze the project and propose what it still needs — missing features, improvements, and ideas prioritized by value and effort — without building anything until approved. Load after build stages complete (or at any checkpoint) when the user asks "what should we add?" or before readiness review. Output feeds PLAN.md / STATUS.md.
+description: Use when the build pauses or finishes and someone asks what to add next — prioritized features and ideas with evidence; nothing is built until approved.
 ---
 
 # Recommendations

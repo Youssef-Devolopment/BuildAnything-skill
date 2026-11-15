@@ -1,6 +1,6 @@
 ---
 name: Mobile App
-description: Build production mobile apps with React Native/Expo — navigation, platform conventions, offline/error states, permissions, testing, and store submission. Load when the project is a mobile app or work involves native device features, app stores, or mobile-specific UX. Follows build-anything's stage gates and design-ui's visual decisions.
+description: Use when building a mobile app with Expo/React Native — navigation, platform conventions, offline/error states, permissions, testing, store submission.
 ---
 
 # Mobile App

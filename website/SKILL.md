@@ -1,6 +1,6 @@
 ---
 name: Website
-description: Build websites — landing pages, marketing sites, static sites, and docs sites — with real content, strong SEO, and top performance scores. Load when the project is a website or a page-heavy project, or when work involves copy, meta tags, sitemaps, or Core Web Vitals. Follows build-anything's stage gates and design-ui's visual decisions.
+description: Use when building a landing, marketing, docs, or static site — content first, SEO, Core Web Vitals, Lighthouse >=95, effects budget.
 ---
 
 # Website

@@ -6,7 +6,7 @@ The universal build skill set — one system that makes **any AI, with any model
 
 | Skill | ID | What it does |
 |---|---|---|
-| **BuildAnything** | `build-anything` | The orchestrator + full pipeline: idea-refiner → micro-planner → stage-gated build (clean least-code, test, fix/report errors, user review) → recommendations → readiness-judge → open-or-private. GitHub-native docs, reasoning discipline for any model size, "least code wins", "deliver better than asked". |
+| **BuildAnything** | `build-anything` | The orchestrator — a slim entry point (tier table: Resume / Fix / Feature / Full, 8 principles, stage gates with evidence, dry-run rule, routing) with deep protocols in `references/` loaded on demand. Runs the pipeline: idea-refiner → micro-planner → stage-gated build → recommendations → readiness-judge → open-or-private. |
 | **Idea Refiner** | `idea-refiner` | Raw prompt/vague idea → polished, AI-understandable `IDEA.md` in 1–3 passes. |
 | **Micro Planner** | `micro-planner` | `IDEA.md` → `PLAN.md` of many small, individually verifiable stages — never batch plans. |
 | **Idea To Product** | `idea-to-product` | For the user who has *only an idea* — developer or not. Plain-language interview, tech decisions made for them, a readable plan, and a build that beats what they imagined. |
@@ -137,8 +137,8 @@ OpenCode discovers them automatically — load one with `@<skill-id>` (e.g. `@bu
 ```
 C:\Buildanything skill\
 ├── build-anything/
-│   ├── SKILL.md
-│   ├── references/stacks.md
+│   ├── SKILL.md            # slim entry point: tier table, principles, gates, routing
+│   ├── references/         # stacks, recovery-loop, pre-flight, discovery, repo-and-docs, workflow — loaded on demand
 │   └── templates/          # TEMPLATE.md + PLAN/TODO/STATUS/README/ARCHITECTURE/STRUCTURE/CHANGELOG/CHECKLIST skeletons, .env.example, .gitignore, CI workflow
 ├── idea-refiner/SKILL.md
 ├── micro-planner/SKILL.md

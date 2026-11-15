@@ -1,6 +1,6 @@
 ---
 name: Database
-description: Design and evolve data layers — schema modeling, migrations, indexes, query performance, and backup/retention. Load when choosing a database, designing tables/collections, writing or reviewing migrations, or debugging slow queries. Works with build-anything and backend.
+description: Use when choosing or changing a data layer — schema design, migrations, indexes, query performance, backups and retention.
 ---
 
 # Database

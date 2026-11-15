@@ -1,6 +1,6 @@
 ---
 name: AI Features
-description: Build AI-powered features properly — LLM integration, prompts, structured output, RAG/search, agents, evals, cost/latency, and guardrails. Load when the project or stage involves calling an LLM, chat interfaces, embeddings, semantic search, or AI automation. Works with build-anything, backend, and frontend.
+description: Use when the project calls an LLM — prompts, structured output, RAG/search, agents, evals, cost/latency, and guardrails.
 ---
 
 # AI Features

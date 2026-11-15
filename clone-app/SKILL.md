@@ -1,6 +1,6 @@
 ---
 name: Clone App
-description: Recreate an existing app (mobile, desktop, or web app) as a fresh, legal working equivalent — record the real flows, map screens and navigation, reverse-engineer the data model, build the core loop first, walk the same flows side by side at every gate. Load when the user says "clone/rebuild/copy this app". Extends clone-anything and build-anything; uses mobile-app, frontend, backend, and database as the platform demands.
+description: Use when cloning an existing app (mobile, desktop, or web) — record flows, map screens and navigation, reverse-engineer the data model, core loop first, same-flow side-by-side walks.
 ---
 
 # Clone App

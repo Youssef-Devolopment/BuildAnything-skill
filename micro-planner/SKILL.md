@@ -1,6 +1,6 @@
 ---
 name: Micro Planner
-description: Turn a refined idea brief into a PLAN.md with many small, individually verifiable stages — never big batch plans. Each stage: one outcome, files, steps, acceptance criteria, test, demo. Load after idea-refiner when the brief is confirmed, before any code. Output is executed by build-anything's stage gates.
+description: Use when a confirmed idea or PLAN.md must become many small, individually verifiable stages — never batch plans; one outcome, files, acceptance criteria, and demo per stage. Feeds build-anything's gates.
 ---
 
 # Micro Planner

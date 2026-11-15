@@ -1,6 +1,6 @@
 ---
 name: Clone Anything
-description: Rebuild an existing product as your own fresh, legal, working recreation — clone a website, app, game, tool, or real-world flow from screenshots/URLs/recordings. Feature inventory first, v1 core loop only, original branding and assets, side-by-side verification against the reference. Load when the user says "clone X", "rebuild X", "copy X", or "make an X clone/like/twin". Runs inside build-anything's stage gates; dispatches websites to clone-website and apps to clone-app.
+description: Use when the user says clone, rebuild, or copy an existing product (site, app, game, tool) — reference capture, feature inventory, v1 core loop only, original branding and assets, side-by-side verification.
 ---
 
 # Clone Anything

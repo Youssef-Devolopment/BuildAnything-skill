@@ -1,6 +1,6 @@
 ---
 name: Clone Website
-description: Recreate an existing website as a fresh, legal, fast equivalent — capture the real page at all breakpoints, inventory sections/copy/assets, rebuild section by section with original content, verify side-by-side in a real browser, ship with Lighthouse >=95 intact. Load when the user says "clone/rebuild/copy this site, landing page, or URL". Extends clone-anything and build-anything; quality bars come from website and design-ui.
+description: Use when cloning a specific website from a URL — 4-breakpoint capture, section/copy/asset inventory, rebuild top-to-bottom with original content, side-by-side verify, Lighthouse >=95 intact.
 ---
 
 # Clone Website

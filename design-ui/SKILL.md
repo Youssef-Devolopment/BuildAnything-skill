@@ -1,6 +1,6 @@
 ---
 name: Design UI
-description: Design and build real, polished user interfaces — layout, typography, color, spacing, states, accessibility, and design systems. Load when designing any UI, choosing a visual direction, building screens or components, or reviewing UI quality. Works alongside build-anything; produces decisions recorded for frontend to implement.
+description: Use when designing any UI or choosing a visual direction — design system, every-state screens, accessibility, motion tiers; records decisions for frontend to implement.
 ---
 
 # Design UI
