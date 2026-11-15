@@ -1,0 +1,7 @@
+# Python bytecode (eval fixtures run locally)
+__pycache__/
+*.pyc
+
+# Editor/OS noise
+.DS_Store
+Thumbs.db
