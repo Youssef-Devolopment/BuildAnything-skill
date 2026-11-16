@@ -16,5 +16,8 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install strict YAML parser
+        run: pip install pyyaml
+
       - name: Verify skill suite and eval fixtures
         run: python scripts/verify.py

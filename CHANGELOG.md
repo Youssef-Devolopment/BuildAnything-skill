@@ -2,6 +2,19 @@
 
 All notable changes to the **BuildAnything skill set** — newest first, append-only. This file is the human-readable summary; the commit history is the full record. Releases are tagged (`v1.0`, `v1.1`, …) to match the entries below.
 
+## [v1.15] — 2026-11-16
+
+> Tags v1.13/v1.14 were used-and-deleted during the revert sessions (git history `e330210`/`51fa163`); this release continues at v1.15 to avoid reusing a tag name.
+
+### Added
+- **`references/question-bank.md`** — copy-paste interview groups (universal 5, SaaS, landing, CLI, mobile, non-developer add-ons), each question with a best-guess answer format; `discovery.md` Phase A now points at it, and the working card's load-on-demand map has an interviewing row.
+- **Capability contract** in `references/core-protocol.md` — model-adaptation rules checked against what you actually are: text-only models replace screenshots with command output / DOM assertions (a screenshot you can't see is an unverifiable claim), no-JSON-mode fallbacks, low-quota batching, weak-plan-adherence one-task-per-reply.
+- **Cross-reference check in `verify.py`** — every `references/*.md` pointer in the working card must resolve (9 checked); `first-time-guide.md` and `question-bank.md` added to the core-files list (11 total).
+
+### Changed
+- **Working card trimmed: 1,474 → 929 words** (37% less per-turn reading) with all operative rules kept — principles, gates, evidence, dry-run, routing all intact; cold-start prompt moved to `references/repo-and-docs.md` (on-demand, per the map) and the delegate table compressed.
+- **Strict YAML validation** — `verify.py` now really parses frontmatters: PyYAML in CI (new `pip install pyyaml` step), strict built-in parser locally. Catches what the old presence-check would let through.
+
 ## [v1.12] — 2026-11-16
 
 ### Added

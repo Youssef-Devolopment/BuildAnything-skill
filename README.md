@@ -171,7 +171,7 @@ The model must get your yes before spending a session's budget on the full pipel
 C:\Buildanything skill\
 ├── build-anything/
 │   ├── SKILL.md            # working card: tier table, principles, gates, routing (daily use)
-│   ├── references/         # first-time-guide, core-protocol, stacks, recovery-loop, pre-flight, discovery, repo-and-docs, workflow — loaded on demand
+│   ├── references/         # first-time-guide, core-protocol, question-bank, stacks, recovery-loop, pre-flight, discovery, repo-and-docs, workflow — loaded on demand
 │   └── templates/          # TEMPLATE.md + PLAN/TODO/STATUS/README/ARCHITECTURE/STRUCTURE/CHANGELOG/CHECKLIST skeletons, .env.example, .gitignore, CI workflow
 ├── idea-refiner/SKILL.md
 ├── micro-planner/SKILL.md

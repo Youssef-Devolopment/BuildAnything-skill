@@ -30,7 +30,18 @@ Run the definition of done (`references/workflow.md`) → optionally `recommenda
 
 ## 5. Handoff
 
-Docs current (`STATUS.md` accurate, `CHANGELOG.md` appended). For the next session, give the cold-start prompt from `SKILL.md`.
+Docs current (`STATUS.md` accurate, `CHANGELOG.md` appended). For the next session, give the cold-start prompt from `references/repo-and-docs.md`.
+
+## Capability contract (match the model you are actually running on)
+
+Check your own capabilities first, then adapt — never claim one you don't have:
+
+- **No vision (text-only model):** a screenshot is an *unverifiable claim* — never write one. The demo is then: raw command output, or DOM/HTML assertions ("`<h1>` renders 'Menu'", "20 rows in the table"). If the user can see images, *they* review UI; describe exactly what to look at.
+- **Has vision:** screenshots/video are valid evidence — capture and actually look at them before claiming success.
+- **No structured-output mode:** write JSON-shaped data as markdown lists/tables for humans; parse model output loosely; never rely on guaranteed JSON.
+- **Strict/limited output:** put evidence in files (append to `CHANGELOG.md`/`STATUS.md`) instead of long chat replies.
+- **Low quota (100-req/day class):** full `core-protocol.md` mode from the start — batch stage reviews to one at stage end, interview once, dry-run as statement under hands-off.
+- **Weak plan-adherence:** before coding, restate the task in one sentence + the single file you'll touch first; one task per reply until the pattern proves stable.
 
 ## Banned in this protocol
 

@@ -50,3 +50,15 @@ During the work, watch for friction a tool would remove. When one would material
 - Figma MCP → building exactly what the designer drew
 
 Never silently depend on a tool that isn't installed: check availability, and if absent either work without it or ask the user to install it first.
+
+## Cold-start prompt (model/session handoff)
+
+Switching models, tools, or chat windows mid-project must be frictionless. Use this exact 3-line prompt to resume any BuildAnything project from zero context — give it to the user (or paste it into the new session yourself):
+
+```text
+Read PLAN.md, TODO.md, STRUCTURE.md, and .opencode/skills/<project-id>/SKILL.md.
+State our current status from STATUS.md and CHANGELOG.md.
+Tell me the next unchecked task from TODO.md and what you need from me to start it.
+```
+
+The prompt is only as good as the docs — if STATUS/CHANGELOG are stale, fixing them is part of handoff, not optional. For a *brand-new* project (no docs yet), the cold-start prompt is instead `idea-refiner`'s input: paste your raw idea.
