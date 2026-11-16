@@ -2,12 +2,6 @@
 
 All notable changes to the **BuildAnything skill set** — newest first, append-only. This file is the human-readable summary; the commit history is the full record. Releases are tagged (`v1.0`, `v1.1`, …) to match the entries below.
 
-## [v1.13] — 2026-11-16
-
-### Added
-- **Drag-and-drop packaging for Bionic-style installers** — `scripts/package.py` builds `dist/` archives: `BuildAnything-<skill-id>.zip` per skill (archive root = the skill folder, so `SKILL.md` sits where the requirement says) plus `BuildAnything-all.zip` with all 19. `dist/` is gitignored as a build artifact. Verified: 19 zips + bundle, 42 files packed, `build-anything/SKILL.md` + `references/` present in the archive.
-- **README "Bionic (drag-and-drop install)" section** — documents the two requirements (folder contains `SKILL.md`; YAML has name + description) and confirms **19/19 skills pass both** (the same checks CI runs via `scripts/verify.py`), with the folder-vs-file guidance (a lone `SKILL.md` loses `references/` and `templates/`).
-
 ## [v1.12] — 2026-11-16
 
 ### Added

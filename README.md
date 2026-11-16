@@ -93,14 +93,6 @@ Both config levels work and **merge**: OpenCode combines the `skills` arrays fro
 2. Extract anywhere
 3. Run `.\install.ps1 -Target claude|agents|opencode`, or copy the skill folders into your agent's skills directory by hand
 
-### Bionic (drag-and-drop install)
-
-Bionic's installer requires: *a folder must contain a `SKILL.md` file*, and *a `SKILL.md` must include the skill name and description in YAML*. **All 19 skills pass both checks** (enforced in CI by `scripts/verify.py`).
-
-- **Select a folder** (recommended) — pick any skill folder, e.g. `build-anything` — the folder *is* the skill, and its `references/` and `templates/` travel with it.
-- **Select a file** — a single `SKILL.md` also passes validation, but note: supporting files (`references/`, `templates/`) do **not** travel with a lone file. Prefer the folder.
-- **Portable zips** — run `python scripts\package.py` to build `dist\BuildAnything-<skill-id>.zip` (one per skill) and `dist\BuildAnything-all.zip` (all 19); each archive's root is the skill folder containing `SKILL.md`. Drag one in if your dialog accepts archives.
-
 ### Updating
 
 | Method | Update command |
@@ -205,7 +197,6 @@ C:\Buildanything skill\
 │   └── templates/PROJECT-SKILL.md   # copy-fill skeleton for the project's own skill
 ├── eval/                   # 10-task measurement harness (README, TASKS, RESULTS, fixtures)
 ├── scripts/verify.py       # self-verification: frontmatters + fixture red/green states
-├── scripts/package.py      # builds dist/ drag-and-drop zips (Bionic, etc.)
 ├── .github/workflows/verify.yml  # CI: runs scripts/verify.py on every push
 ├── install.ps1             # Windows installer + -Doctor
 ├── update.ps1              # git updater (+ daily auto-update schedule)
