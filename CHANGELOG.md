@@ -2,6 +2,12 @@
 
 All notable changes to the **BuildAnything skill set** — newest first, append-only. This file is the human-readable summary; the commit history is the full record. Releases are tagged (`v1.0`, `v1.1`, …) to match the entries below.
 
+## [v1.12] — 2026-11-16
+
+### Added
+- **Two-mode main skill** — `build-anything/SKILL.md` is now the **working card**: the daily loop only (tier table, principles, gates, evidence, dry-run, routing, cold-start) with a mode switch at the top. The **first-time handbook** lives at `references/first-time-guide.md` (philosophy, 6-step pipeline, the five docs, day-one checklist, who it's for) — read once per project, never re-read on tasks. Cuts per-task reading for active builds; first-time users get the full onboarding.
+- **CI that eats its own cooking** — `.github/workflows/verify.yml` runs `scripts/verify.py` on every push/PR: validates all 19 skills' frontmatter (name + description present), checks 9 core files exist, and re-runs the 4 eval fixtures asserting their known red/green exit codes (f1=1, f4=1, f7=1, f8=0). Verified locally: `ALL CHECKS PASSED`.
+
 ## [v1.11] — 2026-11-15
 
 ### Added

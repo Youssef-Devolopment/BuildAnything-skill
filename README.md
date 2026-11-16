@@ -6,7 +6,7 @@ The universal build skill set — one system that makes **any AI, with any model
 
 | Skill | ID | What it does |
 |---|---|---|
-| **BuildAnything** | `build-anything` | The orchestrator — a slim entry point (tier table: Resume / Fix / Feature / Full, 8 principles, stage gates with evidence, dry-run rule, routing) with deep protocols in `references/` loaded on demand. Runs the pipeline: idea-refiner → micro-planner → stage-gated build → recommendations → readiness-judge → open-or-private. |
+| **BuildAnything** | `build-anything` | The orchestrator — a **working card** (tier table: Resume / Fix / Feature / Full, 8 principles, stage gates with evidence, dry-run rule, routing) for daily use, plus `references/first-time-guide.md` read once for onboarding. Deep protocols in `references/` load on demand. Runs the pipeline: idea-refiner → micro-planner → stage-gated build → recommendations → readiness-judge → open-or-private. |
 | **Idea Refiner** | `idea-refiner` | Raw prompt/vague idea → polished, AI-understandable `IDEA.md` in 1–3 passes. |
 | **Micro Planner** | `micro-planner` | `IDEA.md` → `PLAN.md` of many small, individually verifiable stages — never batch plans. |
 | **Idea To Product** | `idea-to-product` | For the user who has *only an idea* — developer or not. Plain-language interview, tech decisions made for them, a readable plan, and a build that beats what they imagined. |
@@ -170,8 +170,8 @@ The model must get your yes before spending a session's budget on the full pipel
 ```
 C:\Buildanything skill\
 ├── build-anything/
-│   ├── SKILL.md            # slim entry point: tier table, principles, gates, routing
-│   ├── references/         # core-protocol, stacks, recovery-loop, pre-flight, discovery, repo-and-docs, workflow — loaded on demand
+│   ├── SKILL.md            # working card: tier table, principles, gates, routing (daily use)
+│   ├── references/         # first-time-guide, core-protocol, stacks, recovery-loop, pre-flight, discovery, repo-and-docs, workflow — loaded on demand
 │   └── templates/          # TEMPLATE.md + PLAN/TODO/STATUS/README/ARCHITECTURE/STRUCTURE/CHANGELOG/CHECKLIST skeletons, .env.example, .gitignore, CI workflow
 ├── idea-refiner/SKILL.md
 ├── micro-planner/SKILL.md
@@ -196,6 +196,8 @@ C:\Buildanything skill\
 │   ├── SKILL.md
 │   └── templates/PROJECT-SKILL.md   # copy-fill skeleton for the project's own skill
 ├── eval/                   # 10-task measurement harness (README, TASKS, RESULTS, fixtures)
+├── scripts/verify.py       # self-verification: frontmatters + fixture red/green states
+├── .github/workflows/verify.yml  # CI: runs scripts/verify.py on every push
 ├── install.ps1             # Windows installer + -Doctor
 ├── update.ps1              # git updater (+ daily auto-update schedule)
 ├── CHANGELOG.md            # release history, newest first

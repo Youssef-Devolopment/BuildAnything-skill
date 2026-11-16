@@ -3,14 +3,15 @@ name: BuildAnything
 description: Use when starting or continuing any project build, deciding architecture, or writing significant code — picks the process tier, plans in PLAN.md, executes under stage gates with evidence, documents for handoff. Orchestrator for all other BuildAnything skills.
 ---
 
-# BuildAnything
+# BuildAnything — working card
 
-The universal build skill: **any AI, any model, any project.** The process produces the result, not the parameter count. This file is the entry point — tier decision, principles, gates, routing. Deep protocols live in `references/`; **open one only when its situation calls for it, never preload them.**
+The universal build skill: **any AI, any model, any project.** This file is the daily loop. **First time in this project (or brand-new project)? Read `references/first-time-guide.md` first** — philosophy, pipeline, the five docs — then work from this card and don't re-read the guide.
 
 ## If you need it, go here (load on demand)
 
 | Situation | Read |
 |---|---|
+| First-time read / new project onboarding | `references/first-time-guide.md` — philosophy, pipeline, five docs |
 | Weak/free model, quota limits, or minimum ceremony | `references/core-protocol.md` — the whole loop in one file |
 | A command, build, or test failed | `references/recovery-loop.md` — run the 5-step loop immediately |
 | Before shipping a stage's code / closing a gate | `references/pre-flight.md` — evidence checklist |
@@ -29,7 +30,7 @@ Survey the workspace first (root, manifests/configs, git state, existing `PLAN.m
 | `STATUS.md` exists and is fresh | **Resume** | `STATUS.md` → next unchecked `TODO.md` task → continue. One status line; no re-interview, no new plan. |
 | Bug fix / small change (described in ≤3 sentences, no new feature) | **Fix** | Task sketch → code → test → done. No interview, no `PLAN.md`. |
 | Single feature in an existing repo | **Feature** | 5-line mini-plan (or a `PLAN.md` §6 addition) → build → verify → gate. |
-| New project, or "build/create an app/site/thing" | **Full** | `references/discovery.md` → `PLAN.md` → `TODO.md` → stage gates. |
+| New project, or "build/create an app/site/thing" | **Full** | `references/first-time-guide.md` → `references/discovery.md` → `PLAN.md` → `TODO.md` → stage gates. |
 
 The pipeline is invariant — only its size adapts: a one-file script and a 20-stage product share plan → gate → verify → document. **Never scale the rigor down, only the ceremony.**
 
@@ -73,17 +74,6 @@ Rules:
 - If the user already granted hands-off mode ("just build it"), the preview becomes a statement before execution instead of a blocking question — but destructive or irreversible changes still block.
 - An approval covers exactly what was described; a different change needs a new preview. "Go on for the rest of the stage" grants blanket approval until the next gate.
 
-## The pipeline (new project, in order)
-
-1. **`idea-refiner`** — raw idea → AI-proof `IDEA.md`
-2. **`micro-planner`** — → `PLAN.md` of small, verifiable stages
-3. **`build-anything`** (this skill) — stage-gated execution
-4. **`recommendations`** — what to add next (built only if approved)
-5. **`readiness-judge`** — evidence-based READY / READY WITH FIXES / NOT READY
-6. **`open-or-private`** — structure for the choice; if open source, `open-source-showcase` adds logo, README, site
-
-Skip nothing without saying why. Non-developers: `idea-to-product` wraps all six. "Clone X": `clone-anything` (websites and apps have methods in `references/`).
-
 ## Delegate to sub-skills
 
 For specialized work, load the matching sub-skill instead of improvising:
@@ -122,4 +112,4 @@ State our current status from STATUS.md and CHANGELOG.md.
 Tell me the next unchecked task from TODO.md and what you need from me to start it.
 ```
 
-The prompt is only as good as the docs — if STATUS/CHANGELOG are stale, fixing them is part of handoff, not optional. For a *brand-new* project (no docs yet), the cold-start prompt is instead `idea-refiner`'s input: paste your raw idea.
+The prompt is only as good as the docs — if STATUS/CHANGELOG are stale, fixing them is part of handoff, not optional. For a *brand-new* project (no docs yet), start with `references/first-time-guide.md`: paste your raw idea there.
