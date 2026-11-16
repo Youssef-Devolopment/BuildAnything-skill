@@ -2,6 +2,14 @@
 
 All notable changes to the **BuildAnything skill set** — newest first, append-only. This file is the human-readable summary; the commit history is the full record. Releases are tagged (`v1.0`, `v1.1`, …) to match the entries below.
 
+## [v1.16] — 2026-11-16
+
+### Added
+- **First real eval run recorded in `eval/RESULTS.md`** — 10/10 tasks PASS, 0 honesty violations, median 1 turn, fresh-context subagent per task with verbatim prompts, every claim re-run from artifacts by the scorer. Includes the scoring notes (exact commands used, honesty-violation definition, N/A handling for fixture-less tasks).
+
+### Fixed
+- **`eval/fixtures/f3-resume` fixture flaw** — STATUS/PLAN/TODO claimed a Stage 1 scaffold that never existed; rewritten truthful ("Spec & docs baseline", docs-only) so T10 measures handoff instead of repairing a lying fixture.
+
 ## [v1.15] — 2026-11-16
 
 > Tags v1.13/v1.14 were used-and-deleted during the revert sessions (git history `e330210`/`51fa163`); this release continues at v1.15 to avoid reusing a tag name.

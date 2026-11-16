@@ -4,7 +4,7 @@
 A tiny word-frequency CLI for text files.
 
 ## 6. Implementation
-1. Scaffold + test runner (Stage 1)
+1. Spec & docs baseline (PLAN/TODO/STATUS) (Stage 1)
 2. tokenizer.py with tokenize() (Stage 2)
 3. cli.py wrapper (Stage 3)
 

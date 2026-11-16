@@ -2,7 +2,7 @@
 
 ## Stage ledger
 
-- [x] Stage 1: Foundation (project scaffold, config) — 2026-11-10
+- [x] Stage 1: Spec & docs baseline (PLAN/TODO/STATUS written, stack decided) — 2026-11-10
 - [ ] Stage 2: Core feature (the tokenizer) — in progress
 - [ ] Stage 3: CLI wrapper
 
@@ -14,4 +14,4 @@ Blocked: none.
 
 ## What's true now
 
-Scaffold runs (`python cli.py --help` works). Tests for stage 1 are green.
+Docs-only: no code files yet, no tests yet (Stage 2 adds them).

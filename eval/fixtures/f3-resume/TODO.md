@@ -1,8 +1,8 @@
 # Project TODO Ledger
 
 ## Stage 1: Foundation
-- [x] Create package layout and config
-- [x] Add test runner script
+- [x] Write PLAN/TODO/STATUS spec docs
+- [x] Decide stack (stdlib Python, no dependencies)
 
 ## Stage 2: Core feature
 - [ ] Implement tokenize() in tokenizer.py
