@@ -2,6 +2,9 @@
 __pycache__/
 *.pyc
 
+# Build artifacts (scripts/package.py output)
+dist/
+
 # Editor/OS noise
 .DS_Store
 Thumbs.db
