@@ -2,6 +2,17 @@
 
 All notable changes to the **BuildAnything skill set** — newest first, append-only. This file is the human-readable summary; the commit history is the full record. Releases are tagged (`v1.0`, `v1.1`, …) to match the entries below.
 
+## [v1.14] — 2026-11-16
+
+### Added
+- **Dogfood run — the repo now follows its own skill.** `build-anything` run on BuildAnything itself (tier: Feature): audit found the repo missing three of its own five mandatory docs. Backfilled `PLAN.md` (retrospective contract, §9 assumptions, §10 definition of done), `TODO.md` (atomic ledger, `- [x]` only with quoted evidence), `STATUS.md` (stage ledger for handoff). Gate evidence: `verify.py` → ALL CHECKS PASSED, `install.ps1 -Doctor` → exit 0, tree clean, `main == origin/main`.
+- **Stage 2 roadmap captured in TODO.md** — first eval run (T1–T10 → `eval/RESULTS.md`), pending live model sessions.
+
+## [v1.13] — 2026-11-16 (reverted)
+
+### Changed
+- Packaging release (`scripts/package.py`, README Bionic section, dist zips) — **reverted at owner request** ("undo all of that"). Commit `e330210` reverted by `61e1c24`; tag `v1.13` deleted; `dist/` zips removed. One-file edition delivered outside the repo to Downloads.
+
 ## [v1.12] — 2026-11-16
 
 ### Added
