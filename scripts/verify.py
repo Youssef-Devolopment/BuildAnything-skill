@@ -26,6 +26,8 @@ def test_core_files():
         "build-anything/references/core-protocol.md",
         "build-anything/references/first-time-guide.md",
         "build-anything/references/question-bank.md",
+        "caveman-report/SKILL.md",
+        "caveman-report/references/modes.md",
         "eval/README.md",
         "eval/TASKS.md",
         "eval/RESULTS.md",
@@ -79,7 +81,7 @@ def _frontmatter(text: str, skill_id: str) -> dict:
 def test_skills_frontmatter():
     print("Checking skill definitions (strict YAML)...")
     skill_files = list(ROOT.glob("*/SKILL.md"))
-    assert len(skill_files) == 19, f"Expected 19 skills, found {len(skill_files)}"
+    assert len(skill_files) == 20, f"Expected 20 skills, found {len(skill_files)}"
 
     try:
         import yaml  # noqa: F401
@@ -95,7 +97,7 @@ def test_skills_frontmatter():
         assert isinstance(name, str) and name.strip(), f"{skill_id}: 'name' missing/empty"
         assert isinstance(desc, str) and desc.strip(), f"{skill_id}: 'description' missing/empty"
 
-    print(f"  OK: All 19 skills valid ({mode}).")
+    print(f"  OK: All 20 skills valid ({mode}).")
 
 
 def test_eval_fixtures():
