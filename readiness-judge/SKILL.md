@@ -1,6 +1,6 @@
 ---
 name: Readiness Judge
-description: Use when someone asks "is it ready to release?" — independent evidence-based verdict: READY / READY WITH FIXES / NOT READY with a blocking list.
+description: "Use when someone asks \"is it ready to release?\" — independent evidence-based verdict: READY / READY WITH FIXES / NOT READY with a blocking list."
 ---
 
 # Readiness Judge
