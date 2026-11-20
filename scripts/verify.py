@@ -26,6 +26,8 @@ def test_core_files():
         "build-anything/references/core-protocol.md",
         "build-anything/references/first-time-guide.md",
         "build-anything/references/question-bank.md",
+        "caveman-report/SKILL.md",
+        "caveman-report/references/modes.md",
         "eval/README.md",
         "eval/TASKS.md",
         "eval/RESULTS.md",
@@ -34,6 +36,28 @@ def test_core_files():
         p = ROOT / rel
         assert p.is_file(), f"Missing core file: {rel}"
     print(f"  OK: {len(required)} core files present.")
+
+
+def _assert_plain_scalar(skill_id: str, key: str, value: str) -> None:
+    """Reject values PyYAML would reject, so local runs match CI exactly.
+
+    A YAML plain scalar cannot contain ": " (colon + space) — the parser reads
+    it as a nested mapping. PyYAML raises there; the fallback parser used to
+    accept it, which made "verified locally" diverge from what CI enforces.
+    """
+    if not value:
+        return
+    if value[0] in ("'", '"'):
+        if len(value) < 2 or value[-1] != value[0]:
+            raise AssertionError(
+                f"{skill_id}/SKILL.md frontmatter '{key}' has an unterminated quoted value"
+            )
+        return
+    if ": " in value:
+        raise AssertionError(
+            f"{skill_id}/SKILL.md frontmatter '{key}' contains ': ' — invalid YAML plain scalar. "
+            f"Quote the whole value (e.g. description: \"...\") or drop the colon."
+        )
 
 
 def _frontmatter(text: str, skill_id: str) -> dict:
@@ -72,14 +96,16 @@ def _frontmatter(text: str, skill_id: str) -> dict:
             raise AssertionError(f"{skill_id}/SKILL.md frontmatter line is not 'key: value': {raw!r}")
         key, _, value = raw.partition(":")
         assert key.strip() == key and key, f"{skill_id}/SKILL.md bad key: {key!r}"
-        data[key.strip()] = value.strip()
+        value = value.strip()
+        _assert_plain_scalar(skill_id, key.strip(), value)
+        data[key.strip()] = value
     return data
 
 
 def test_skills_frontmatter():
     print("Checking skill definitions (strict YAML)...")
     skill_files = list(ROOT.glob("*/SKILL.md"))
-    assert len(skill_files) == 19, f"Expected 19 skills, found {len(skill_files)}"
+    assert len(skill_files) == 20, f"Expected 20 skills, found {len(skill_files)}"
 
     try:
         import yaml  # noqa: F401
@@ -89,13 +115,13 @@ def test_skills_frontmatter():
 
     for sf in skill_files:
         skill_id = sf.parent.name
-        data = _frontmatter(sf.read_text(encoding="utf-8"), skill_id)
+        data = _frontmatter(sf.read_text(encoding="utf-8-sig"), skill_id)
         name = data.get("name")
         desc = data.get("description")
         assert isinstance(name, str) and name.strip(), f"{skill_id}: 'name' missing/empty"
         assert isinstance(desc, str) and desc.strip(), f"{skill_id}: 'description' missing/empty"
 
-    print(f"  OK: All 19 skills valid ({mode}).")
+    print(f"  OK: All 20 skills valid ({mode}).")
 
 
 def test_eval_fixtures():
@@ -127,7 +153,7 @@ def test_eval_fixtures():
 def test_skill_cross_references():
     print("Checking working card's references/ pointers resolve...")
     card = ROOT / "build-anything" / "SKILL.md"
-    text = card.read_text(encoding="utf-8")
+    text = card.read_text(encoding="utf-8-sig")
     import re
 
     targets = sorted(set(re.findall(r"references/([a-z0-9\-]+\.md)", text)))

@@ -53,6 +53,8 @@ The pipeline is invariant — only its size adapts. **Never scale the rigor down
 
 **Gate clears = four updates in the same change:** `TODO.md` (each `- [x]` backed by green test) · `CHANGELOG.md` (stage entry) · `STATUS.md` (stage flip) · any doc the stage changed. Done = clean, tested, error-free (or errors reported first), reviewed — not "code written".
 
+**How you report it:** load `caveman-report` and write the review in compressed style — what shipped, the evidence, what's next. Compression never removes a fact, a caveat, or the evidence block.
+
 Errors you can't fix: quote the exact error, say what it means, propose the fix — **before** moving on. Never swallow an error.
 
 ## Dry-run preview (major changes)
@@ -82,6 +84,7 @@ Approve? (y, or tell me to change it)
 | Data layer, testing, shipping | `database` / `testing` / `deployment` |
 | AI/LLM features | `ai-features` |
 | The project's own knowledge skill | `project-skill-creator` |
+| Reporting to the user in compressed style (stage reviews, delivery summaries) | `caveman-report` |
 | Choosing a stack | `references/stacks.md` |
 
 Not listed (CLI tools, payments, pipelines)? Follow this card's process and quality bar — the pattern is the same.

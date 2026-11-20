@@ -21,6 +21,7 @@ The universal build skill set — one system that makes **any AI, with any model
 | **Deployment** | `deployment` | CI/CD, environments, hosting choices, releases, rollback, go-live checklist. |
 | **AI Features** | `ai-features` | LLM integration, prompts as code, RAG, evals, cost/latency, guardrails. |
 | **Project Skill Creator** | `project-skill-creator` | Builds the project's own in-repo SKILL.md from a fill-in template (`templates/PROJECT-SKILL.md`) — day one skeleton + ~50% full capture. |
+| **Caveman Report** | `caveman-report` | Compressed reporting style for stage-gate reviews, delivery summaries, and error explanations — same facts and evidence, no filler. |
 | **Recommendations** | `recommendations` | After the build: prioritized list of missing features/ideas with evidence — nothing built until approved. |
 | **Readiness Judge** | `readiness-judge` | Independent evidence-based verdict: READY / READY WITH FIXES / NOT READY. |
 | **Open Or Private** | `open-or-private` | Asks open-source vs. private, then structures the repo for that choice (license+community files vs. owner-runnable structure). |
@@ -32,7 +33,7 @@ Reference: [`build-anything/references/stacks.md`](build-anything/references/sta
 
 Repo: **https://github.com/Youssef-Devolopment/BuildAnything-skill** (public — clone, download, or copy freely)
 
-Pick **one** method. All of them give you the same 19 skills.
+Pick **one** method. All of them give you the same 20 skills.
 
 > ### ⚠️ Use exactly ONE option — never two
 > Options 1–4 are **alternatives**, not steps. Running two (e.g. cloning into the skills folder *and* registering a path in `opencode.json`) creates **two copies** — OpenCode loads only one of them by precedence, edits to the losing copy look ignored, and updates silently stop applying.
@@ -165,6 +166,17 @@ The model must get your yes before spending a session's budget on the full pipel
 | [`eval/RESULTS.md`](eval/RESULTS.md) | Scoreboard — one row per model run |
 | `eval/fixtures/` | Small Python projects with known red/green states to run the tasks against |
 
+### Verify (run this before you push)
+
+`scripts/verify.py` is the same script CI runs on every push: it validates every skill's frontmatter, checks the core files exist, resolves the working card's `references/` pointers, and re-runs the eval fixtures against their known red/green states.
+
+```bash
+python -m pip install pyyaml   # CI uses PyYAML for strict YAML parsing — install it locally too
+python scripts/verify.py
+```
+
+Install PyYAML before verifying. Without it the script falls back to a built-in parser, which is *more* forgiving than PyYAML — so a local green run can hide an invalid frontmatter that CI would reject. Local and CI must agree.
+
 ## Layout
 
 ```
@@ -195,6 +207,9 @@ C:\Buildanything skill\
 ├── project-skill-creator/
 │   ├── SKILL.md
 │   └── templates/PROJECT-SKILL.md   # copy-fill skeleton for the project's own skill
+├── caveman-report/
+│   ├── SKILL.md                      # compressed reporting style for reviews + summaries
+│   └── references/modes.md           # intensity ladder (lite/full/ultra) + worked examples
 ├── eval/                   # 10-task measurement harness (README, TASKS, RESULTS, fixtures)
 ├── scripts/verify.py       # self-verification: frontmatters + fixture red/green states
 ├── .github/workflows/verify.yml  # CI: runs scripts/verify.py on every push
