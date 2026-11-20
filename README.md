@@ -166,6 +166,17 @@ The model must get your yes before spending a session's budget on the full pipel
 | [`eval/RESULTS.md`](eval/RESULTS.md) | Scoreboard — one row per model run |
 | `eval/fixtures/` | Small Python projects with known red/green states to run the tasks against |
 
+### Verify (run this before you push)
+
+`scripts/verify.py` is the same script CI runs on every push: it validates every skill's frontmatter, checks the core files exist, resolves the working card's `references/` pointers, and re-runs the eval fixtures against their known red/green states.
+
+```bash
+python -m pip install pyyaml   # CI uses PyYAML for strict YAML parsing — install it locally too
+python scripts/verify.py
+```
+
+Install PyYAML before verifying. Without it the script falls back to a built-in parser, which is *more* forgiving than PyYAML — so a local green run can hide an invalid frontmatter that CI would reject. Local and CI must agree.
+
 ## Layout
 
 ```
