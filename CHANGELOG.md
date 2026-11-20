@@ -2,6 +2,13 @@
 
 All notable changes to the **BuildAnything skill set** — newest first, append-only. This file is the human-readable summary; the commit history is the full record. Releases are tagged (`v1.0`, `v1.1`, …) to match the entries below.
 
+## [v1.17] — 2026-11-20
+
+### Added
+- **`caveman-report` skill** — a reporting-style sub-skill: stage-gate reviews, delivery summaries, and error explanations written in compressed caveman style (same facts and evidence, no filler). `SKILL.md` holds the rules (drop articles/filler/hedges, keep exact technical terms, error text, paths, and numbers; code blocks and command output pasted raw and never compressed), the three-part report skeleton (what shipped → evidence → what's next), and the "what never shrinks" list — evidence, security warnings, destructive-action confirmations, multi-step sequences, and anything the user asked to clarify. `references/modes.md` holds the intensity ladder (lite / full / ultra, plus wenyan on request) with worked examples and an anti-pattern table. Never applies to code, commits, PR bodies, or repo files — those stay normal prose.
+- **Reporting hook in the working card** — `build-anything/SKILL.md` now tells the model to load `caveman-report` for stage-gate reviews and the final delivery summary, with the guard that compression never removes a fact, a caveat, or the evidence block. Delegate table gained the routing row.
+- **Verification updated** — `scripts/verify.py` expects 20 skills (was 19) and checks both new files (`caveman-report/SKILL.md`, `caveman-report/references/modes.md`) in the core-file list. README skills table, skill count, and layout tree updated.
+
 ## [v1.16] — 2026-11-16
 
 ### Added
