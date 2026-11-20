@@ -9,6 +9,10 @@ All notable changes to the **BuildAnything skill set** — newest first, append-
 - **Reporting hook in the working card** — `build-anything/SKILL.md` now tells the model to load `caveman-report` for stage-gate reviews and the final delivery summary, with the guard that compression never removes a fact, a caveat, or the evidence block. Delegate table gained the routing row.
 - **Verification updated** — `scripts/verify.py` expects 20 skills (was 19) and checks both new files (`caveman-report/SKILL.md`, `caveman-report/references/modes.md`) in the core-file list. README skills table, skill count, and layout tree updated.
 
+### Fixed
+- **CI was red on `main` since v1.15** — `readiness-judge/SKILL.md`'s `description` contained `verdict: READY / READY WITH FIXES / NOT READY`. The `: ` makes it invalid YAML (PyYAML reads it as a nested mapping), so `verify.py` raised and every push since v1.15 failed the `verify` workflow. The value is now quoted. The v1.15 changelog entry claimed "Verified locally: ALL CHECKS PASSED" because the local run used the **built-in fallback parser**, which accepted the malformed value — the local check and the CI check were not the same check.
+- **Local verification now matches CI** — the built-in fallback parser rejects what PyYAML rejects: a plain scalar containing `: `, and an unterminated quoted value. `read_text` now uses `utf-8-sig`, so a UTF-8 BOM in a frontmatter (easy to add with a Windows editor) no longer fails the `---` check. README gained a **Verify** section telling contributors to install PyYAML before verifying, with the reason: a local green run without PyYAML can hide a frontmatter that CI rejects.
+
 ## [v1.16] — 2026-11-16
 
 ### Added
