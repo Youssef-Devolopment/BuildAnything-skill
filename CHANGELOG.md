@@ -2,6 +2,11 @@
 
 All notable changes to the **BuildAnything skill set** — newest first, append-only. This file is the human-readable summary; the commit history is the full record. Releases are tagged (`v1.0`, `v1.1`, …) to match the entries below.
 
+## [Unreleased]
+
+### Added
+- **Logo** — `assets/logo.svg` (mark + wordmark lockup) and `assets/logo-mark.svg` (icon only, for the favicon / social card). Hand-written SVG, no raster blobs: an indigo `#4F46E5` rounded square holding a white **A** for *Anything*, its two legs built from four discrete blocks (the stages), bridged by a crossbar that spans the seam — the stage gate holding the pieces together. The wordmark flips to near-white under `prefers-color-scheme: dark` and keeps a dark-ink default so it stays legible wherever the SVG is embedded. README now leads with the logo and a one-line tagline.
+
 ## [v1.17] — 2026-11-20
 
 ### Added

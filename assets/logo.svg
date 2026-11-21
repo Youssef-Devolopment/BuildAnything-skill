@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 96" width="368" height="96" role="img" aria-label="BuildAnything">
+  <style>
+    .wm { fill: #111827; }
+    @media (prefers-color-scheme: dark) { .wm { fill: #F9FAFB; } }
+  </style>
+  <g transform="translate(4 16)">
+    <rect width="64" height="64" rx="15" fill="#4F46E5"/>
+    <g fill="#fff">
+      <path d="M23 18H30L26.11 35H19.11Z"/>
+      <path d="M18.66 37H25.66L22 53H15Z"/>
+      <path d="M34 18H41L44.89 35H37.89Z"/>
+      <path d="M38.34 37H45.34L49 53H42Z"/>
+      <rect x="21" y="33" width="22" height="7" rx="1.5"/>
+    </g>
+  </g>
+  <text class="wm" x="88" y="62" font-family="ui-sans-serif, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="-0.4" textLength="252" lengthAdjust="spacingAndGlyphs">BuildAnything</text>
+</svg>
