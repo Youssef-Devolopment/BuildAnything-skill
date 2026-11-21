@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="assets/logo.svg" width="368" alt="BuildAnything — the universal build skill set">
+</p>
+
+<p align="center">
+  The universal build skill set — one system that makes <strong>any AI, with any model, build anything</strong>.
+</p>
+
 # BuildAnything
 
 The universal build skill set — one system that makes **any AI, with any model, build anything** the right way: interviewed first, planned in `PLAN.md`, built stage by stage with clean least-code, tested, reviewed, and documented so the next agent (human or AI) picks it up cold.
@@ -211,7 +219,12 @@ C:\Buildanything skill\
 │   ├── SKILL.md                      # compressed reporting style for reviews + summaries
 │   └── references/modes.md           # intensity ladder (lite/full/ultra) + worked examples
 ├── eval/                   # 10-task measurement harness (README, TASKS, RESULTS, fixtures)
+├── assets/
+│   ├── logo.svg            # logo + wordmark lockup (dark-mode aware)
+│   ├── logo-mark.svg       # icon only — favicon / social card
+│   └── logo-mark.png       # 512x512 raster of the mark (GitHub avatar)
 ├── scripts/verify.py       # self-verification: frontmatters + fixture red/green states
+├── scripts/render_logo.py  # regenerates logo-mark.png from the mark's geometry
 ├── .github/workflows/verify.yml  # CI: runs scripts/verify.py on every push
 ├── install.ps1             # Windows installer + -Doctor
 ├── update.ps1              # git updater (+ daily auto-update schedule)
